@@ -35,7 +35,6 @@ public class ArithmeticReview {
 		System.out.println("9.4*8.2=77.08 "+(firNumber*secNumber));
 		System.out.println("9.4/8.2=1.1463414634146343 "+(firNumber/secNumber));
 		System.out.println("9.4/8.2=1.2"+(firNumber%secNumber));
-		System.out.println("");
 
 		//OUTPUT
 //				9.4+8.2=17.6 17.6
@@ -44,6 +43,7 @@ public class ArithmeticReview {
 //				9.4/8.2=1.15 1.1463414634146343
 //				9.4/8.2=1 1.200000000000001
 
+		//boolean task 
 		boolean first;
 		boolean second; 
 //		System.out.println("boolean first value "+ first);
