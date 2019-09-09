@@ -4,16 +4,26 @@ import java.util.Scanner;
 
 public class leapYear {
 	public static void main(String[] args) {
-		while (1 == 1) {
+		boolean breaker = true;
 			Scanner sc = new Scanner(System.in);
 			double year = sc.nextInt();
+			while (year > 1582 && breaker == true) {
 
-			if (year > 1582 && ((year % 4 == 0) && !(year % 100 == 0) || (year % 400 == 0))) {
-				System.out.println(year + " is a leap year");
-			} else {
-				System.out.println(year + " is not a leap year");
+				if (((year % 4 == 0) && !(year % 100 == 0) || (year % 400 == 0))) {
+					System.out.println(year + " is a leap year");
+					breaker = false;
+					break;
+				} else {
+					System.out.println(year + " is not a leap year");
+					breaker = false;
+					break;
+				}
 			}
-		}
+			while (breaker == true) {
+				System.out.println("Error");
+				break;
+			}
+		
 	}
 
 }
