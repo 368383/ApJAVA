@@ -24,5 +24,3 @@ public class collegeSectorSwitch {
 		//program was not completed due to the fact that you cannot use multiple arguments in a switch statement. 
 		}
 	}
-
-}
