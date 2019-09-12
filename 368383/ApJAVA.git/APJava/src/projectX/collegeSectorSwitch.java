@@ -17,10 +17,11 @@ public class collegeSectorSwitch {
 		System.out.println("Please type in your desired school location");
 		Scanner sc1 = new Scanner(System.in);
 		String location = sc1.next();
-		
+
 //		switch(tier) {
 //		case 1; 
 //		case 2;
-		//program was not completed due to the fact that you cannot use multiple arguments in a switch statement. 
-		}
+		// program was not completed due to the fact that you cannot use multiple
+		// arguments in a switch statement.
 	}
+}
