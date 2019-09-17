@@ -11,7 +11,7 @@ public class Ramanujan {
 
 		for (int i = 1; i < input; i++) {
 			double x = Math.cbrt(input - Math.pow(i, 3));
-			if ((x % 1 == 0 || x % 2 == 0)&&x>0) {
+			if ((x % 1 == 0 )&&x>0) {
 				System.out.println(i+" and " + x );
 				continue;
 			} else {

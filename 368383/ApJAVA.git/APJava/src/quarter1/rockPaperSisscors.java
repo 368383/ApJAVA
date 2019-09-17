@@ -11,12 +11,14 @@ public class rockPaperSisscors {
 		int win = 0;
 		int tie = 0;
 		int loss = 0;
-		while (con == true) {
+		while (con) {
 			// TODO Auto-generated method stub
 			System.out.println("1 for rock, 2 for paper, 3 for scissor | 0 for to stop");
 			Scanner user = new Scanner(System.in);
+			//
 			int userInput = user.nextInt();
 			int cpuInput = ThreadLocalRandom.current().nextInt(1, 3);
+			//evaluation and deal with zero;
 			if ((!(userInput == 0) && userInput < 1) || userInput > 3) {
 				System.out.println("INVALD INPUT");
 				continue;
@@ -50,6 +52,7 @@ public class rockPaperSisscors {
 				System.out.println("loss " + loss);
 				System.out.println("tie " + tie);
 				con = false;
+				//break;
 			}
 		}
 
