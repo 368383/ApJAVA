@@ -8,15 +8,14 @@ public class Ramanujan {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
-		double limit = Math.cbrt(input / 2);
-		for (int i = 1; i <= limit; i++) {
-			double x = Math.cbrt(input - Math.pow(i, 3));
-			if (x % 1 == 0) {
-				System.out.println(i + " and " + (int) x);
+		for (int i = 0; i <= input; i++) {
+			double limit = Math.cbrt(i / 2);
+			for (int i1 = 1; i1 <= limit; i1++) {
+				double x = Math.cbrt(i - Math.pow(i1, 3));
+				if (x % 1 == 0) {
+					System.out.println(i1 + " and " + (int) x + " = " + (int) (Math.pow(i1, 3) + Math.pow(x, 3)));
+				}
 			}
-
 		}
-
 	}
-
 }
