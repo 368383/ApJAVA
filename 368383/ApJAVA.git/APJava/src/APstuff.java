@@ -5,23 +5,10 @@ public class APstuff {
 		// TODO Auto-generated method stub
 		int total = 0;
 
-		for (int k = 0; k <= 100; k += 2)
-
-		{
-
-			total += k;
-
+		for (int k =100; k <= 100; k ++) {
+			System.out.println("HIT");
 		}
-		System.out.println(total);
 
-		for (int k = 0; k < 101; k += 2)
-
-		{
-
-			total += k - 1;
-
-		}
-		System.out.println(total);
 
 	}
 }
