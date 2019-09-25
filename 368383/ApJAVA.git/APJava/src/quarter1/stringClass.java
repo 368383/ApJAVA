@@ -22,8 +22,8 @@ public class stringClass {
 		// 7
 		System.out.print("\n");
 		// 8
-		System.out.println("one third char" + one.charAt(2));
-		System.out.println("two third char" + two.charAt(2));
+		System.out.println("one third char " + one.charAt(2));
+		System.out.println("two third char " + two.charAt(2));
 		// 9
 		System.out.print("\n");
 		// 10
@@ -39,12 +39,21 @@ public class stringClass {
 		// 15
 		System.out.print("\n");
 		//16
+		System.out.println(two);
+		System.out.println(one);
+
 		System.out.println(one.compareTo(two));
 		System.out.println(two.compareTo(one));
 		//17
 		System.out.print("\n");
-
-
+		//18
+		System.out.println(one.equals(two));
+		//19
+		System.out.print("\n");
+		//20
+		one = "hello";
+		two = "hello";
+		System.out.println(one.compareTo(two));
 	}
 
 }
