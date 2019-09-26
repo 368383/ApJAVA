@@ -28,26 +28,24 @@ public class shortHand {
 				if (input.substring(i, i + 3).equals("for")) {
 					input = input.substring(0, i) + "4" + input.substring(i + 3, input.length());
 				}
-				if (input.substring(i, i + 1).contains("a")) {
-					input = input.substring(0, i) + input.substring(i+1, input.length());
+				if (input.substring(i, i + 1).equals("a")) {
+					input = input.substring(0, i) + input.substring(i + 1, input.length());
 				}
-				if (input.substring(i, i + 1).contains("e")) {
-					input = input.substring(0, i) + input.substring(i+1, input.length());
+				if (input.substring(i, i + 1).equals("e")) {
+					input = input.substring(0, i) + input.substring(i + 1, input.length());
 				}
-				if (input.substring(i, i + 1).contains("i")) {
-					input = input.substring(0, i) + input.substring(i+1, input.length());
+				if (input.substring(i, i + 1).equals("i")) {
+					input = input.substring(0, i) + input.substring(i + 1, input.length());
 				}
-				if (input.substring(i, i + 1).contains("o")) {
-					input = input.substring(0, i) + input.substring(i+1, input.length());
+				if (input.substring(i, i + 1).equals("o")) {
+					input = input.substring(0, i) + input.substring(i + 1, input.length());
 				}
-				if (input.substring(i, i + 1).contains("u")) {
-					input = input.substring(0, i) + input.substring(i+1, input.length());
+				if (input.substring(i, i + 1).equals("u")) {
+					input = input.substring(0, i) + input.substring(i + 1, input.length());
 				}
 			}
 			System.out.println("FINAL " + input.substring(0, input.length() - 4));
-
 		}
 		System.out.println("Program stopped");
 	}
-
 }
