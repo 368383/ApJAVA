@@ -38,7 +38,6 @@ public class pigLatin {
 	}
 
 	public static String secondPunct(String input, String finalized) {
-
 		return input + type(finalized);
 	}
 

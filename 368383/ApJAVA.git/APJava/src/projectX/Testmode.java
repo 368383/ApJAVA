@@ -4,11 +4,18 @@ public class Testmode {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(hello("alphus"));
+		System.out.println(prompt(var(), what()));
 	}
 
-	public static String prompt(String input) {
-		return design(input) + "e";
+	public static String var() {
+		return "alphus";
+	}
+
+	public static String prompt(String input, boolean alphus) {
+		if (alphus == true) {
+			return design(input) + "e";
+		}
+		return "false";
 	}
 
 	public static String process(String input) {
@@ -19,7 +26,8 @@ public class Testmode {
 		return input + "c";
 	}
 
-	public static String hello(String alphus) {
-		return prompt(alphus);
+	public static boolean what() {
+
+		return false;
 	}
 }
