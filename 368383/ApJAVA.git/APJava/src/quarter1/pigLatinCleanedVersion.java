@@ -7,7 +7,6 @@ public class pigLatinCleanedVersion {
 	private static boolean stopProgram = false;
 	private static String invalid = "INVALD";
 	private static String startsWithVowel = "startsWithVowel";
-//private static String doubleY = "doubleY";
 	private static String containsQU = "containsQU";
 	private static String defaultCase = "defaultCase";
 
@@ -131,10 +130,6 @@ public class pigLatinCleanedVersion {
 		boolean hasVowels = false;
 		for (int i = 0; i < input.length() - 1; i++) {
 			String seq = input.substring(i, i + 1);
-			/*
-			 * if (seq.contains("y") && !(input.substring(0, 1).contains("y"))) { return
-			 * doubleY; }
-			 */
 			if (containsVowel(seq) || seq.equals("y")) {
 				hasVowels = true;
 			} else {
