@@ -7,7 +7,9 @@ public class pigLatin {
 	public static void main(String[] args) {
 		while (1 == 1) {
 			System.out.println("PLEASE TYPE IN YOUR TEXT. TYPE IN 'STOP' TO STOP PROGRAM ");
-			String fox = process(prompt());
+			String original = prompt();
+			String owl = firstPunct(original);
+			String fox = secondPunct(outputCaps(capital(owl), process(owl)), original);
 			if (fox.equals("stop")) {
 				System.out.println("PROGRAM HAS FINISHED ");
 				break;
@@ -28,28 +30,45 @@ public class pigLatin {
 	}
 
 	public static boolean capital(String input) {
-		String wolves = prompt();
-		System.out.println("I'm tired");
-		for (int i = 0; i < wolves.length(); i++) {
-			if (wolves.substring(0, 1) != wolves.substring(0, 1).toLowerCase()) {
-				System.out.println("I'm tired");
-				return true;
-			}
+		String wolves = input;
+		if (wolves.substring(0, 1).equals(wolves.substring(0, 1).toUpperCase())) {
+			return true;
 		}
 		return false;
 	}
 
-	public static String output(boolean caps) {
-		System.out.println("I'm again");
-		String birds = process(prompt());
-		if (caps == true) {
-			return birds.substring(0, 1).toUpperCase() + birds.substring(1);
+	public static String secondPunct(String input, String finalized) {
+
+		return input + type(finalized);
+	}
+
+	public static String firstPunct(String input) {
+		String wolves = input;
+		String check = wolves.substring(wolves.length() - 1, wolves.length());
+		if (check.equals("!") || check.equals("?") || check.equals(".")) {
+			return wolves.substring(0, wolves.length() - 1);
+		}
+		return wolves;
+	}
+
+	public static String type(String input) {
+		String wolves = input;
+		String check = wolves.substring(wolves.length() - 1, wolves.length());
+		if (check.equals("!") || check.equals("?") || check.equals(".")) {
+			return wolves.substring(wolves.length() - 1);
+		}
+		return "";
+	}
+
+	public static String outputCaps(boolean caps2, String punctuation) {
+		String birds = punctuation;
+		if (caps2 == true) {
+			return birds.substring(0, 1).toUpperCase() + birds.substring(1).toLowerCase();
 		}
 		return birds;
 	}
 
 	public static String process(String input) {
-
 		if (input.contains("stop")) {
 			return "stop";
 		} else {
@@ -89,7 +108,8 @@ public class pigLatin {
 		return input;
 	}
 
-	public static int cases(String input) {
+	public static int cases(String eagle) {
+		String input = eagle.toLowerCase();
 		boolean valid = false;
 		for (int i = 0; i < input.length(); i++) {
 			String seq = input.substring(i, i + 1);
