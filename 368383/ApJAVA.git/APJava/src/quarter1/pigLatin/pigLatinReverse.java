@@ -1,4 +1,4 @@
-package quarter1;
+package quarter1.pigLatin;
 
 import java.util.Scanner;
 
