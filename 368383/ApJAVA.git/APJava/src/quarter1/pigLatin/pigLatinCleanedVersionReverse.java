@@ -15,24 +15,21 @@ public class pigLatinCleanedVersionReverse {
 			System.out.println("PLEASE TYPE IN YOUR TEXT. TYPE IN 'STOP' TO STOP PROGRAM ");
 			String original = prompt();
 			String[] inputCleaned = removePunctionAtEnd(original);
-			boolean startsWithCap = isFirstCapital(inputCleaned[0]);
-			String reArrangedInput = reArrange(inputCleaned[0]);
-			String quotes[] = quotations(original);
+			boolean startsWithCap = isFirstCapital(inputCleaned[1]);
+			String reArrangedInput = reArrange(inputCleaned[1]);
 			String capInput = restoreCaps(startsWithCap, reArrangedInput);
-			String finalOutPut = quotes[2] + capInput + inputCleaned[1] + quotes[1];
-			
-			
-			System.out.println(capInput);
+			String finalOutPut = inputCleaned[0] + capInput + inputCleaned[2];
+
 			String originalR = finalOutPut;
 			String[] inputCleanedR = removePunctionAtEnd(originalR);
-			boolean startsWithCapR = isFirstCapital(inputCleanedR[0]);
+			boolean startsWithCapR = isFirstCapital(inputCleanedR[1]);
 			String reversed = "";
 
-			for (int i = 0; i < inputCleanedR[0].length(); i++) {
-				reversed = inputCleanedR[0].substring(i, i + 1) + reversed;
+			for (int i = 0; i < inputCleanedR[1].length(); i++) {
+				reversed = inputCleanedR[1].substring(i, i + 1) + reversed;
 			}
 			String capInputR = restoreCaps(startsWithCapR, reversed);
-			String finalOutputR = inputCleaned[2] + capInputR + inputCleanedR[1];
+			String finalOutputR = inputCleaned[0] + capInputR + inputCleanedR[2];
 			if (finalOutPut.equals("INVALID")) {
 				System.out.println("Invalid Input");
 			} else {
@@ -66,25 +63,27 @@ public class pigLatinCleanedVersionReverse {
 	}
 
 	public static String[] removePunctionAtEnd(String input) {
-		String returnValue[] = { input, "" };
-		System.out.println("Testing puncutation");
-		String lastChar = input.substring(input.length() - 1, input.length());
-
-		if (lastChar.equals("!") || lastChar.equals("?") || lastChar.equals("."))
-
-		{
-			returnValue[0] = input.substring(0, input.length() - 1);
-			returnValue[1] = input.substring(input.length() - 1);
-			returnValue[2] = "";
-			System.out.println(returnValue[2]);
+		String returnValue[] = { "", "", "" };
+		int i = 0;
+		int l = 0;
+		if (input.startsWith("\"")) {
+			returnValue[0] = "\"";
+			i = 1;
+		} else {
+			returnValue[0] = "";
 		}
-
+		for (l = i; l < input.length(); l++) {
+			String indexTest = input.substring(l, l + 1);
+			if (indexTest.equals("!") || indexTest.equals("?") || indexTest.equals(".") || indexTest.equals("\"")) {
+				break;
+			}
+		}
+		returnValue[1] = input.substring(i, l);
+		returnValue[2] = input.substring(l);
 		return returnValue;
 	}
 
 	public static String[] quotations(String input) {
-
-		String lastChar = input.substring(input.length() - 1, input.length());
 		if (input.endsWith("\"")) {
 			System.out.println("Quotes detected");
 			String quotes1[] = { input.substring(1, input.length() - 1), "\"", "\"" };
@@ -121,16 +120,6 @@ public class pigLatinCleanedVersionReverse {
 					return invalid;
 
 				}
-				/*
-				 * case "doubleY": for (int i = 0; i < input.length() - 1; i++) { String seq =
-				 * input.substring(i, i + 1); if (input.substring(0, 1).equals("y")) { if
-				 * (containsVowel(seq)) { return input.substring(1) + "yay"; }
-				 * 
-				 * } else { for (int i1 = 0; i1 < input.length() - 1; i1++) { if
-				 * (input.charAt(i1) == 'y') { return input.substring(i1) + input.substring(0,
-				 * i1) + "ay"; } } System.out.println("Invalid 1" + input); return invalid; } }
-				 */
-
 			case "invalid":
 				System.out.println("Invalid 3" + input);
 
