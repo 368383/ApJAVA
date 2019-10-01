@@ -39,6 +39,7 @@ public class pigLatinCleanedVersionReverse {
 				} else {
 					System.out.println("FORMATTED INTO PIG LATIN " + finalOutPut);
 					System.out.println("REVERSED PIG LATIN " + finalOutputR);
+					System.out.println("--------------------------");
 				}
 			}
 		}
