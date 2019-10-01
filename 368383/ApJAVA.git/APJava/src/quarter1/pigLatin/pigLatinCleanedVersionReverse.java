@@ -17,8 +17,12 @@ public class pigLatinCleanedVersionReverse {
 			String[] inputCleaned = removePunctionAtEnd(original);
 			boolean startsWithCap = isFirstCapital(inputCleaned[0]);
 			String reArrangedInput = reArrange(inputCleaned[0]);
+			String quotes[] = quotations(original);
 			String capInput = restoreCaps(startsWithCap, reArrangedInput);
-			String finalOutPut = capInput + inputCleaned[1];
+			String finalOutPut = quotes[2] + capInput + inputCleaned[1] + quotes[1];
+			
+			
+			System.out.println(capInput);
 			String originalR = finalOutPut;
 			String[] inputCleanedR = removePunctionAtEnd(originalR);
 			boolean startsWithCapR = isFirstCapital(inputCleanedR[0]);
@@ -28,7 +32,7 @@ public class pigLatinCleanedVersionReverse {
 				reversed = inputCleanedR[0].substring(i, i + 1) + reversed;
 			}
 			String capInputR = restoreCaps(startsWithCapR, reversed);
-			String finalOutputR = capInputR + inputCleanedR[1];
+			String finalOutputR = inputCleaned[2] + capInputR + inputCleanedR[1];
 			if (finalOutPut.equals("INVALID")) {
 				System.out.println("Invalid Input");
 			} else {
@@ -63,14 +67,31 @@ public class pigLatinCleanedVersionReverse {
 
 	public static String[] removePunctionAtEnd(String input) {
 		String returnValue[] = { input, "" };
-
+		System.out.println("Testing puncutation");
 		String lastChar = input.substring(input.length() - 1, input.length());
-		if (lastChar.equals("!") || lastChar.equals("?") || lastChar.equals(".")) {
+
+		if (lastChar.equals("!") || lastChar.equals("?") || lastChar.equals("."))
+
+		{
 			returnValue[0] = input.substring(0, input.length() - 1);
 			returnValue[1] = input.substring(input.length() - 1);
+			returnValue[2] = "";
+			System.out.println(returnValue[2]);
 		}
 
 		return returnValue;
+	}
+
+	public static String[] quotations(String input) {
+
+		String lastChar = input.substring(input.length() - 1, input.length());
+		if (input.endsWith("\"")) {
+			System.out.println("Quotes detected");
+			String quotes1[] = { input.substring(1, input.length() - 1), "\"", "\"" };
+			return quotes1;
+		}
+		String quotes[] = { "", "", "" };
+		return quotes;
 	}
 
 	public static String restoreCaps(boolean caps2, String punctuation) {
