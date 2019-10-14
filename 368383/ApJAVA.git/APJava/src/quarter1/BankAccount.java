@@ -23,7 +23,7 @@ public class BankAccount {
 	}
 
 	public String toString() {
-		return "name " + name + " balance " + balance;
+		return "name " + "<" + name + ">" +" balance " + "<" + balance ">";
 	}
 
 	public double getBalance() {
