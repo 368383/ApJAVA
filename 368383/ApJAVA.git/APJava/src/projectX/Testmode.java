@@ -1,33 +1,16 @@
 package projectX;
 
+import java.util.Scanner;
+
 public class Testmode {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(prompt(var(), what()));
-	}
 
-	public static String var() {
-		return "alphus";
-	}
+		Scanner sc = new Scanner(System.in);
+		String input = sc.next();
 
-	public static String prompt(String input, boolean alphus) {
-		if (alphus == true) {
-			return design(input) + "e";
-		}
-		return "false";
-	}
+		System.out.println(input.endsWith("\""));
 
-	public static String process(String input) {
-		return input + "b";
-	}
-
-	public static String design(String input) {
-		return input + "c";
-	}
-
-	public static boolean what() {
-
-		return false;
 	}
 }
