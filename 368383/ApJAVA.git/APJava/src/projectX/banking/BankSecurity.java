@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 public class BankSecurity {
 	private boolean secureStatus = false;
 	private int secure = 3;
-
-	private int passwordCount = -1;
+	private boolean passwordEntry = true;
+	private int passwordCount = 0;
 	private String systemMessage = "default";
 	private int attempts = 0;
 
@@ -24,30 +24,37 @@ public class BankSecurity {
 	}
 
 	private String passwordRetrieval() {
-		passwordCount++;
+		System.out.println("DEBUGGING INFORMATION - PASSWORDCOUNT VAR " + passwordCount);
 		String entries[] = { "", "", "", "" };
 		Scanner code = new Scanner(System.in);
 		entries[passwordCount] = code.next();
-		return entries[passwordCount];
+		int index = passwordCount;
+		passwordCount++;
+		System.out.println("DEBUGGING INFORMATION - PASSWORDCOUNT INPUT " + entries[index]);
+		return entries[index];
+
 	}
 
 	public BankSecurity(boolean alpha) throws InterruptedException {
+		String passCode = "";
 		while (true) {
-			if (attempts == 3) {
+			if (attempts == 2) {
 				systemMessage = error1;
-				secureStatus = true;
+				secureStatus = false;
 				break;
 			}
+			System.out.println("Please enter in your credentials");
 			int max = secure;
 			for (int i = 0; i < max + 1; i++) {
-				String passCode = passwordRetrieval();
+				passCode = passwordRetrieval();
 				if (secure == 0) {
 					System.out.println("Logged in too many times. Please wait 5 minutes to try again");
 					TimeUnit.MILLISECONDS.sleep(5000);
 					secure = 3;
-					attempts++;
+					// attempts++;
 					passwordCount = 0;
 					secureStatus = false;
+					continue;
 				}
 				if (passCode.equals("passcodeSample")) {
 					secureStatus = true;

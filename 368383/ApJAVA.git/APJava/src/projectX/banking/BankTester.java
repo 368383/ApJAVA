@@ -4,18 +4,15 @@ import java.util.Scanner;
 
 public class BankTester {
 	private static BankAccount[] customers = new BankAccount[1000];
-	private static BankSecurity status;
+	private static BankSecurity securityStatus;
 	private static int totalCustomers = 0;
 
 	public static void main(String[] args) throws InterruptedException {
-		System.out.println("Enter in Credentials");
-
-		status = new BankSecurity(true);
-		if (status.getStatus() == false) {
-			System.out.println(status.getSystemMessage());
+		securityStatus = new BankSecurity(true);
+		if (securityStatus.getStatus() == false) {
+			System.out.println(securityStatus.getSystemMessage());
 		} else {
-			System.out.println(status.getSystemMessage());
-
+			System.out.println(securityStatus.getSystemMessage());
 			accountPrompt();
 		}
 	}
@@ -53,25 +50,9 @@ public class BankTester {
 		customers[totalCustomers] = newAccount;
 		String output = newAccount.toString();
 		System.out.println("Balance " + newAccount.getBalance());
-		// System.out.println("Balance " + newAccount.balance);
-		// newAccount.balance=newAccount.balance+100.00;
 		totalCustomers++;
 		return output;
 
 	}
 
 }
-//originally in main 
-//// TODO Auto-generated method stub
-//customers = new BankAccount[1000];
-//BankAccount account0 = new BankAccount("bob", 1000);
-//
-////for (int i = 0; i < 10; i++) {
-////	customers[1] = new BankAccount("Something", 100);
-////
-//////	account0.deposit(505.22);
-//////	System.out.println(account1.getBalance());
-//////
-//////	account1.withdrawl(1000);
-//////	System.out.println(account1.toString());
-////}
