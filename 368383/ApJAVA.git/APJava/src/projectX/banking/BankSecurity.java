@@ -6,60 +6,62 @@ import java.util.concurrent.TimeUnit;
 public class BankSecurity {
 	private boolean secureStatus = false;
 	private int secure = 3;
-	private boolean passwordEntry = true;
-	private int passwordCount = 0;
-	private String systemMessage = "default";
+
+	private static String systemMessage = "default";
 	private int attempts = 0;
 
-	private String error1 = "Contact your administrator for password total reset.";
+	private static String error1 = "Contact your administrator for password total reset.";
 
 	public BankSecurity() {
 		secureStatus = false;
 	}
 
-	public long currentTime() {
-		long time;
-		time = System.currentTimeMillis() / 1000;
-		return time;
-	}
-
 	private String passwordRetrieval() {
-		System.out.println("DEBUGGING INFORMATION - PASSWORDCOUNT VAR " + passwordCount);
-		String entries[] = { "", "", "", "" };
+		System.out.println("Please enter in your credentials");
 		Scanner code = new Scanner(System.in);
-		entries[passwordCount] = code.next();
-		int index = passwordCount;
-		passwordCount++;
-		System.out.println("DEBUGGING INFORMATION - PASSWORDCOUNT INPUT " + entries[index]);
-		return entries[index];
+		String returnValue = code.next();
+		return returnValue;
 
 	}
 
-	public BankSecurity(boolean alpha) throws InterruptedException {
+	private void pause() {
+		System.out.println("Logged in too many times. Please wait 5 minutes to try again");
+		try {
+
+			Thread.sleep(5000);
+			System.in.read(new byte[System.in.available()]);// read and ignore
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return;
+	}
+
+	public boolean passwordChecker() throws InterruptedException {
 		String passCode = "";
 		while (true) {
 			if (attempts == 2) {
-				systemMessage = error1;
 				secureStatus = false;
-				break;
+				systemMessage = error1;
+				System.out.println(systemMessage);
+				return secureStatus;
 			}
-			System.out.println("Please enter in your credentials");
+
 			int max = secure;
 			for (int i = 0; i < max + 1; i++) {
 				passCode = passwordRetrieval();
 				if (secure == 0) {
-					System.out.println("Logged in too many times. Please wait 5 minutes to try again");
-					TimeUnit.MILLISECONDS.sleep(5000);
-					secure = 3;
-					// attempts++;
-					passwordCount = 0;
+					pause();
+					reset();
 					secureStatus = false;
 					continue;
 				}
 				if (passCode.equals("passcodeSample")) {
 					secureStatus = true;
 					systemMessage = "You have successfully logged in";
-					break;
+					System.out.println(systemMessage);
+					return secureStatus;
 				} else {
 					System.out.println("Invalid Code. Try again with " + (secure) + " times remaining");
 					secureStatus = false;
@@ -70,8 +72,10 @@ public class BankSecurity {
 
 	}
 
-	public String getSystemMessage() {
-		return systemMessage;
+	private void reset() {
+		secure = 3;
+		// attempts++;
+
 	}
 
 	public boolean getStatus() {

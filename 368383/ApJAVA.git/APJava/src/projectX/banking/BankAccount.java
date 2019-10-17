@@ -4,21 +4,31 @@ public class BankAccount {
 	private double balance;
 	private String name;
 	private int mobilePhonumber;
-	
+	private static double annualServiceFee;
+
+	public static double getAnnualServiceFee() {
+		return annualServiceFee;
+	}
+
+	public static void setAnnualServiceFee(double annualServiceFee) {
+		annualServiceFee = annualServiceFee;
+	}
+
 	public int getMobilePhonumber() {
-		//I want to make sure this is not a scam number before giving out;
+		// I want to make sure this is not a scam number before giving out;
 		return mobilePhonumber;
 	}
 
 	public void setMobilePhonumber(int mobilePhonumber) {
-		//I want to make sure this is a legitimate number before set,
-		
+		// I want to make sure this is a legitimate number before set,
+
 		this.mobilePhonumber = mobilePhonumber;
 	}
 
 	public BankAccount() {
 		balance = 0;
 		name = "guest";
+		annualServiceFee = 1;
 	}
 
 	public BankAccount(String userName, double amount) {
@@ -55,13 +65,11 @@ public class BankAccount {
 	}
 
 	public double getBalance() {
-		if(balance<0) {
+		if (balance < 0) {
 			System.out.println("Your account is not in good standing, please see administrator");
 			return 0;
 		}
 		return balance;
 	}
-	
-
 
 }
