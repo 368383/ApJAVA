@@ -1,4 +1,4 @@
-package projectX;
+package projectX.banking;
 
 import java.util.Scanner;
 
