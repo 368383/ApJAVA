@@ -1,0 +1,67 @@
+package projectX;
+
+public class BankAccount {
+	private double balance;
+	private String name;
+	private int mobilePhonumber;
+	
+	public int getMobilePhonumber() {
+		//I want to make sure this is not a scam number before giving out;
+		return mobilePhonumber;
+	}
+
+	public void setMobilePhonumber(int mobilePhonumber) {
+		//I want to make sure this is a legitimate number before set,
+		
+		this.mobilePhonumber = mobilePhonumber;
+	}
+
+	public BankAccount() {
+		balance = 0;
+		name = "guest";
+	}
+
+	public BankAccount(String userName, double amount) {
+		balance = amount;
+		name = userName;
+	}
+
+	public void deposit(double in) {
+		if (in < 0) {
+			System.out.println("UNABLE TO PROCESS: DEPOSIT CANNOT BE NEGATIVE");
+			return;
+		}
+		balance = balance + in;
+	}
+
+	public void withdraw(double out) {
+		if (balance < out) {
+			System.out.println("UNABLE TO PROCESS: BALANCE IS LESS THAN WITHDRAW");
+			return;
+		}
+		balance = balance - out;
+	}
+
+	public void bonus(int bonus) {
+		if (bonus < 0) {
+			System.out.println("UNABLE TO PROCESS: BONUS IS NEGATIVE ");
+			return;
+		}
+		balance = balance + bonus;
+	}
+
+	public String toString() {
+		return "name " + "<" + name + ">" + " balance " + "<" + balance + ">";
+	}
+
+	public double getBalance() {
+		if(balance<0) {
+			System.out.println("Your account is not in good standing, please see administrator");
+			return 0;
+		}
+		return balance;
+	}
+	
+
+
+}
