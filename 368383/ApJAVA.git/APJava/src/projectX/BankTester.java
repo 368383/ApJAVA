@@ -7,14 +7,15 @@ public class BankTester {
 	private static BankSecurity status;
 	private static int totalCustomers = 0;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		System.out.println("Enter in Credentials");
 
 		status = new BankSecurity(true);
 		if (status.getStatus() == false) {
-
+			System.out.println(status.getSystemMessage());
 		} else {
-			System.out.println("Entered in System");
+			System.out.println(status.getSystemMessage());
+
 			accountPrompt();
 		}
 	}
