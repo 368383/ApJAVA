@@ -1,7 +1,5 @@
 package quarter1.pigLatin;
-
 import java.util.Scanner;
-
 public class pigLatinCleanedVersionReverse {
 
 	private static boolean stopProgram = false;
@@ -104,7 +102,7 @@ public class pigLatinCleanedVersionReverse {
 
 	public static String reArrange(String input) {
 
-		if (input.contains("stop")) {
+		if (input.equals("stop")) {
 			return "stop";
 		} else {
 			String cases = cases(input);

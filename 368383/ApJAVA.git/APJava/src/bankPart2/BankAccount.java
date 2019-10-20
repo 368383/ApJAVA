@@ -1,17 +1,24 @@
-package quarter1;
+package bankPart2;
+
+import java.io.File;
+import java.util.Scanner;
 
 public class BankAccount {
 	private double balance;
-	private String name;
+	private String lastName;
+
+	public String getLastsName() {
+		return lastName;
+	}
 
 	public BankAccount() {
 		balance = 0;
-		name = "guest";
+		lastName = "guest";
 	}
 
 	public BankAccount(String userName, double amount) {
 		balance = amount;
-		name = userName;
+		lastName = userName;
 	}
 
 	public void deposit(double in) {
@@ -23,7 +30,7 @@ public class BankAccount {
 	}
 
 	public String toString() {
-		return "name " + "<" + name + ">" + " balance " + "<" + balance + ">";
+		return "Customer Last Name " + "<" + lastName + ">" + " | Customer Balance " + "<" + balance + ">";
 	}
 
 	public double getBalance() {
