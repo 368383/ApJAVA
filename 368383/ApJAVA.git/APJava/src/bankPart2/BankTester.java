@@ -17,16 +17,18 @@ public class BankTester {
 		}
 		BankDay today = new BankDay(teller, currentDate, bankAccounts);
 
-		for (int i = 0; i < 5; i++) {
-			System.out.println("Input desired customer search");
-			Scanner search = new Scanner(System.in);
-			String searchInput = search.next();
-			BankAccount result = today.searchResult(searchInput);
+		for (int i = 0; i < 1; i++) {
+			String searchInput = Utility.prompt("Input desired customer search");
+			BankAccount searchResult = today.searchResult(searchInput);
 
-			today.transaction(result);
-			System.out.println(result);
+			today.transaction(searchResult);
+			System.out.println(searchResult);
 		}
-		System.out.println("Program Compeltion");
+		System.out.println("Program Completion");
+
+		// optional
+		teller.write("bank_account_reWrite.txt");
+
 	}
 
 }

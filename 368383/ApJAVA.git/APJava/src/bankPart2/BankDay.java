@@ -27,20 +27,19 @@ public class BankDay {
 	}
 
 	public void transaction(BankAccount account) {
-		System.out.println("What type of transaction would you like to preform?");
-		System.out.println("W for WITHDRAWL | D for DEPOSIT");
-		Scanner choice = new Scanner(System.in);
-		String input = choice.next();
+		String input = Utility
+				.prompt("What type of transaction would you like to preform? \nW for WITHDRAWL | D for DEPOSIT");
 		if (input.toUpperCase().equals("W")) {
-			System.out.println("Input Amount to WITHDRAW");
-			Scanner amountWithdraw = new Scanner(System.in);
-			int withdraw = amountWithdraw.nextInt();
+
+			String withdrawPrompt = Utility.prompt("Input Amount to WITHDRAW");
+			int withdraw = Integer.parseInt(withdrawPrompt);
 			account.withdrawl(withdraw);
-		} else {
-			System.out.println("Input Amount to DEPOSIT");
-			Scanner amountDeposit = new Scanner(System.in);
-			int deposit = amountDeposit.nextInt();
+		} else if (input.toUpperCase().equals("D")) {
+			String depositPrompt = Utility.prompt("Input Amount to DEPOSIT");
+			int deposit = Integer.parseInt(depositPrompt);
 			account.deposit(deposit);
+		} else {
+			System.out.println("Invalid Input");
 		}
 
 	}

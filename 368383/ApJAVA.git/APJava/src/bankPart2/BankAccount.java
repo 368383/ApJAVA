@@ -33,6 +33,10 @@ public class BankAccount {
 		return "Customer Last Name " + "<" + lastName + ">" + " | Customer Balance " + "<" + balance + ">";
 	}
 
+	public String toFile() {
+		return lastName + "   " + balance + "\n";
+	}
+
 	public double getBalance() {
 		return balance;
 	}
