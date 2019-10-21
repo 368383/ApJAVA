@@ -13,7 +13,7 @@ public class BankMain {
 		} else {
 			BankInterface.accountPrompt();
 		}
-//		write("projectX_listofAccounts.txt");
+		BankTools.write("projectX_listofAccounts.txt");
 	}
 
 }

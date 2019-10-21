@@ -10,7 +10,7 @@ import bankPart2.BankAccount;
 public class BankTools {
 	private String firstName;
 	private String lastName;
-	private ArrayList<BankAccount2> customers = new ArrayList<BankAccount2>();
+	private static ArrayList<BankAccount2> customers = new ArrayList<BankAccount2>();
 
 	public BankTools() {
 		String firstName = "guest";
@@ -34,7 +34,7 @@ public class BankTools {
 
 	}
 
-	public void write(String fileName) {
+	public static void write(String fileName) {
 		try {
 
 			BufferedWriter file = Files.newBufferedWriter(Paths.get(fileName));
