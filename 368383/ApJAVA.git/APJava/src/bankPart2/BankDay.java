@@ -22,7 +22,6 @@ public class BankDay {
 				return requestedAccount = account;
 			}
 		}
-
 		return null;
 	}
 
@@ -51,7 +50,7 @@ public class BankDay {
 	}
 
 	public void displayAccount() {
-		System.out.println(targetAccount.toString() + todayBanker.greeter(targetAccount.getLastsName()));
+		System.out.println(targetAccount.toString() + " " + todayBanker.greeter(targetAccount.getLastsName()));
 	}
 
 }

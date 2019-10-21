@@ -10,7 +10,7 @@ public class BankTester {
 		LocalDate currentDate = java.time.LocalDate.now();
 		System.out.println(currentDate);
 		// TODO Auto-generated method stub
-		Banker teller = new Banker();
+		Banker teller = new Banker("Bob");
 		bankAccounts = teller.read("bank_account_2013.txt");
 		for (BankAccount currentAccount : bankAccounts) {
 			System.out.println(currentAccount);
@@ -22,7 +22,9 @@ public class BankTester {
 			BankAccount searchResult = today.searchResult(searchInput);
 
 			today.transaction(searchResult);
-			System.out.println(searchResult);
+			// System.out.println(searchResult);
+
+			today.displayAccount();
 		}
 		System.out.println("Program Completion");
 
