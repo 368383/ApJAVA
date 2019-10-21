@@ -17,7 +17,7 @@ public class BankTester {
 		}
 		BankDay today = new BankDay(teller, currentDate, bankAccounts);
 
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 5; i++) {
 			String searchInput = Utility.prompt("Input desired customer search");
 			BankAccount searchResult = today.searchResult(searchInput);
 
