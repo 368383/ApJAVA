@@ -12,7 +12,7 @@ public class BankInterface {
 			String stringValue = Utility.prompt("Enter Initial Amount");
 			int value = Integer.valueOf(stringValue);
 			BankTools usage = new BankTools();
-			BankAccount2 result = usage.addAccount(firstName, lastName, value);
+			BankAccountMain result = usage.addAccount(firstName, lastName, value);
 			System.out.println("Add User to the system: " + result.toString());
 			String count = Utility.prompt("Continue adding more names? Y = Yes | N = No");
 			if (count.toUpperCase().equals("Y")) {

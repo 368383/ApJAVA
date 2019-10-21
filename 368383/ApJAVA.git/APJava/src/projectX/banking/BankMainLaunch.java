@@ -2,7 +2,7 @@ package projectX.banking;
 
 import java.util.Scanner;
 
-public class BankMain {
+public class BankMainLaunch {
 	private static BankSecurity securityStatus;
 
 	public static void main(String[] args) throws InterruptedException {

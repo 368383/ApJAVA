@@ -10,7 +10,7 @@ import bankPart2.BankAccount;
 public class BankTools {
 	private String firstName;
 	private String lastName;
-	private static ArrayList<BankAccount2> customers = new ArrayList<BankAccount2>();
+	private static ArrayList<BankAccountMain> customers = new ArrayList<BankAccountMain>();
 
 	public BankTools() {
 		String firstName = "guest";
@@ -22,10 +22,10 @@ public class BankTools {
 		lastName = inputLastName;
 	}
 
-	public BankAccount2 addAccount(String firstName, String lastName, int initial) {
+	public BankAccountMain addAccount(String firstName, String lastName, int initial) {
 
 		String name = firstName + " " + lastName;
-		BankAccount2 newAccount = new BankAccount2(name, initial);
+		BankAccountMain newAccount = new BankAccountMain(name, initial);
 
 		customers.add(newAccount);
 

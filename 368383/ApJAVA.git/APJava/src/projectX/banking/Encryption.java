@@ -10,21 +10,7 @@ import java.util.Scanner;
 import bankPart2.BankAccount;
 
 public class Encryption {
-	private ArrayList<BankAccount2> encryptionHolder = new ArrayList<BankAccount2>();
+	private ArrayList<BankAccountMain> encryptionHolder = new ArrayList<BankAccountMain>();
 
-	public ArrayList<BankAccount2> read(String fileName) {
-
-		try {
-			BufferedWriter file = Files.newBufferedWriter(Paths.get(fileName));
-			file.write("");
-			for (BankAccount currentAccount : accounts) {
-				file.write(currentAccount.toFile());
-			}
-			file.flush();
-			file.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 }
