@@ -1,6 +1,6 @@
 package projectX.banking;
 
-public class BankAccount {
+public class BankAccount2 {
 	private double balance;
 	private String name;
 	private int mobilePhonumber;
@@ -25,13 +25,13 @@ public class BankAccount {
 		this.mobilePhonumber = mobilePhonumber;
 	}
 
-	public BankAccount() {
+	public BankAccount2() {
 		balance = 0;
 		name = "guest";
 		annualServiceFee = 1;
 	}
 
-	public BankAccount(String userName, double amount) {
+	public BankAccount2(String userName, double amount) {
 		balance = amount;
 		name = userName;
 	}
@@ -72,4 +72,7 @@ public class BankAccount {
 		return balance;
 	}
 
+	public String toFile() {
+		return name + "   " + balance + "\n";
+	}
 }
