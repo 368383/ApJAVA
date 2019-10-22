@@ -5,12 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import bankPart2.BankAccount;
+
 
 public class BankTools {
 	private String firstName;
 	private String lastName;
-	private static ArrayList<BankAccountMain> customers = new ArrayList<BankAccountMain>();
+	private static ArrayList<BankAccount> customers = new ArrayList<BankAccount>();
 
 	public BankTools() {
 		String firstName = "guest";
@@ -22,10 +22,10 @@ public class BankTools {
 		lastName = inputLastName;
 	}
 
-	public BankAccountMain addAccount(String firstName, String lastName, int initial) {
+	public BankAccount addAccount(String firstName, String lastName, int initial) {
 
 		String name = firstName + " " + lastName;
-		BankAccountMain newAccount = new BankAccountMain(name, initial);
+		BankAccount newAccount = new BankAccount(name, initial);
 
 		customers.add(newAccount);
 

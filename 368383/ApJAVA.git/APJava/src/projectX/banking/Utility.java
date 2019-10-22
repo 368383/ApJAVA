@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import bankPart2.BankAccount;
 
 public class Utility {
 	public static String prompt(String prompt) {
@@ -21,9 +20,9 @@ public class Utility {
 		System.out.println("DEBUGGIN INFORMATION " + prompt);
 	}
 
-	public static BankAccountMain[] read(String fileName) {
+	public static BankAccount[] read(String fileName) {
 		// TODO Auto-generated method stub
-		BankAccountMain[] accounts = new BankAccountMain[20];
+		BankAccount[] accounts = new BankAccount[20];
 		System.out.println("Reading File from Java code");
 
 		try {
@@ -39,7 +38,7 @@ public class Utility {
 				String name = in.next();
 				int bal = in.nextInt();
 				// System.out.println(name + " " + bal);
-				accounts[i] = new BankAccountMain(name, bal);
+				accounts[i] = new BankAccount(name, bal);
 			}
 			// Close the buffer reader
 			in.close();
@@ -50,12 +49,12 @@ public class Utility {
 
 	}
 
-	public static void write(String fileName, ArrayList<BankAccountMain> storedArray) {
+	public static void write(String fileName, ArrayList<BankAccount> storedArray) {
 
 		try {
 			BufferedWriter file = Files.newBufferedWriter(Paths.get(fileName));
 			file.write("");
-			for (BankAccountMain currentAccount : storedArray) {
+			for (BankAccount currentAccount : storedArray) {
 				file.write(currentAccount.toFile());
 			}
 			file.flush();
