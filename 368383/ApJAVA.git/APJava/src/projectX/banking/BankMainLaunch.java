@@ -11,9 +11,10 @@ public class BankMainLaunch {
 		boolean isAuthorized = securityStatus.passwordChecker();
 		if (isAuthorized == false) {
 		} else {
+			// BankingBackground.decrypt();
 			BankInterface.accountPrompt();
+			// BankingBackground.encrypt();
+			Utility.prompt("Program Completion");
 		}
-		BankTools.write("projectX_listofAccounts.txt");
 	}
-
 }
