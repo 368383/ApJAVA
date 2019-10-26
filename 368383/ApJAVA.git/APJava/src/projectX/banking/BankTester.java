@@ -1,19 +1,24 @@
 package projectX.banking;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class BankTester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Bank.addTeller();
 
-		BankAccount[] testArray;
-		testArray = Utility.read("bank_account_2013.txt");
-
-		Encryption.encryptTest("passwordFile.txt", 5, 4);
-
-		Encryption.encrypt("fileDump.txt", testArray);
-
-		//Encryption.decrypt("fileDump.txt");
+		String testArray;
+		String originalFile = "bank_account_2013.txt";
+		String targetFile = "passwordFile.txt";
+		String passPhrase = " 234AHG";
+		testArray = Utility.readContent(originalFile);
+		BankingEncryption.encrypt(testArray, passPhrase, targetFile);
+		String decrypted = BankingEncryption.decrypt(passPhrase, targetFile);
+		Utility.allocateAccounts(decrypted);
 
 	}
 
+	
 }
