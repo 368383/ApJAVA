@@ -1,6 +1,7 @@
 package projectX.banking;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class Bank {
 	private static ArrayList<BankAccount> listofAccounts;
@@ -41,7 +42,7 @@ public class Bank {
 			String inputOption = Utility
 					.prompt("Would you like to continue adding accounts? \n Type in Y for YES  \n Type in N for NO");
 			if (!inputOption.equalsIgnoreCase("Y")) {
-				writeClass();
+				writeTellers();
 				break;
 			}
 		}
@@ -51,7 +52,7 @@ public class Bank {
 		tellers.add(teller);
 	}
 
-	private static void writeClass() {
+	private static void writeTellers() {
 		StringBuffer tellersString = new StringBuffer();
 		for (BankTeller currentTeller : tellers) {
 			tellersString.append(tellers.toString());
@@ -61,6 +62,19 @@ public class Bank {
 
 	public static ArrayList<BankAccount> getListofAccounts() {
 		return listofAccounts;
+	}
+
+	public static void loadTellerAccounts() {
+		String tellers = Utility.readContent("tellersAccount.txt");
+		StringTokenizer bracket = new StringTokenizer(tellers, "[");
+		while (bracket.hasMoreTokens()) {
+			String bracketString = bracket.toString();
+			bracketString = bracketString.substring(0, bracketString.length() - 1);
+			StringTokenizer commas = new StringTokenizer(bracketString, ",");
+			while(commas.hasMoreTokens()) {
+				
+			}
+		}
 	}
 
 	public static void setListofAccounts(ArrayList<BankAccount> listofAccounts) {

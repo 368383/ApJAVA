@@ -84,7 +84,7 @@ public class Utility {
 			file.write(encryptedContent);
 			file.flush();
 			file.close();
-
+			System.out.println(fileName + " has been written successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
