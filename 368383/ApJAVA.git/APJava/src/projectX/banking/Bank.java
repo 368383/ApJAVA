@@ -6,19 +6,19 @@ import java.util.StringTokenizer;
 public class Bank {
 	private static ArrayList<BankAccount> listofAccounts;
 	public static String tellerFile = "tellersAccount.txt";
-	private static ArrayList<BankTeller> tellers = new ArrayList<BankTeller>();
+	private static ArrayList<BankTeller> tellersList = new ArrayList<BankTeller>();
 
 	public static void setTellers(ArrayList<BankTeller> tellers) {
 		tellers = tellers;
 	}
 
 	public static ArrayList<BankTeller> getTellers() {
-		return tellers;
+		return tellersList;
 	}
 
 	public static BankTeller searchTellerList(String searchInput) {
 
-		for (BankTeller currentTeller : tellers) {
+		for (BankTeller currentTeller : tellersList) {
 			if (currentTeller.toString().contains(searchInput)) {
 				return currentTeller;
 			}
@@ -49,15 +49,25 @@ public class Bank {
 	}
 
 	private static void addTellers(BankTeller teller) {
-		tellers.add(teller);
+		tellersList.add(teller);
+	}
+
+	public static void main(String[] args0) {
+		loadTellerAccounts();
+		System.out.println("finished loading " + tellersList.size());
+		for (BankTeller currentTeller : tellersList) {
+			System.out.println(currentTeller.toString());
+		}
 	}
 
 	private static void writeTellers() {
 		StringBuffer tellersString = new StringBuffer();
-		for (BankTeller currentTeller : tellers) {
-			tellersString.append(tellers.toString());
+		for (BankTeller currentTeller : tellersList) {
+			tellersString.append(currentTeller.toFormattedString());
 		}
-		Utility.writeStrings(tellerFile, tellersString.toString());
+		System.out.println("List of tellers to apphend " + tellersString);
+
+		BankingEncryption.encrypt(tellersString.toString(), "default", "tellersAccount.txt");
 	}
 
 	public static ArrayList<BankAccount> getListofAccounts() {
@@ -65,15 +75,18 @@ public class Bank {
 	}
 
 	public static void loadTellerAccounts() {
-		String tellers = Utility.readContent("tellersAccount.txt");
-		StringTokenizer bracket = new StringTokenizer(tellers, "[");
-		while (bracket.hasMoreTokens()) {
-			String bracketString = bracket.toString();
-			bracketString = bracketString.substring(0, bracketString.length() - 1);
-			StringTokenizer commas = new StringTokenizer(bracketString, ",");
-			while(commas.hasMoreTokens()) {
-				
+		String tellers = BankingEncryption.decrypt("default", "tellersAccount.txt");
+		// System.out.println("tellers " + tellers);
+		StringTokenizer verticalLine = new StringTokenizer(tellers, "|");
+		while (verticalLine.hasMoreTokens()) {
+			String separatedAccount = verticalLine.nextToken();
+			StringTokenizer currentAccount = new StringTokenizer(separatedAccount);
+			ArrayList<String> tellerTraits = new ArrayList<String>();
+			while (currentAccount.hasMoreTokens()) {
+				String trait = currentAccount.nextToken();
+				tellerTraits.add(trait);
 			}
+			tellersList.add(new BankTeller(tellerTraits.get(0), tellerTraits.get(1), tellerTraits.get(2)));
 		}
 	}
 

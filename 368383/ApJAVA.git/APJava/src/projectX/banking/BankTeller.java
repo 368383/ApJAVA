@@ -33,8 +33,9 @@ public class BankTeller {
 			System.out.println("Invalid characters, must contain English Alphabetical Characters");
 		}
 		while (true) {
-			credentials = Utility.prompt("Please enter in your credentials");
-			if (credentials.length() > 5) {
+			String userPasswordInput = Utility.prompt("Please enter in your credentials");
+			if (userPasswordInput.length() > 5) {
+				credentials = userPasswordInput;
 				break;
 			}
 			System.out.println("Password is two short. Must be an excess of 5 characters");
@@ -43,6 +44,10 @@ public class BankTeller {
 
 	public String toString() {
 		return firstName + " " + lastName;
+	}
+
+	public String toFormattedString() {
+		return firstName + " " + lastName + " " + credentials + " |";
 	}
 
 }

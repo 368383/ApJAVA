@@ -23,16 +23,17 @@ public class Utility {
 		String value = scan.next();
 		return value;
 	}
-	
-	public static boolean isStringOnlyAlphabet(String str) 
-	    { 
-	        return ((str != null) 
-	                && (!str.equals("")) 
-	                && (str.matches("^[a-zA-Z]*$"))); 
-	    } 
+
+	public static boolean isStringOnlyAlphabet(String str) {
+		return ((str != null) && (!str.equals("")) && (str.matches("^[a-zA-Z]*$")));
+	}
 
 	public static void printLine() {
 		System.out.println("__________________________________________");
+	}
+
+	public static void print(String stringInput) {
+		System.out.println(stringInput);
 	}
 
 	public static void allocateAccounts(String rawString) {
