@@ -13,6 +13,14 @@ public class Banker {
 	// OPTIONAL
 	private BankAccount[] accounts;
 
+	public Banker() {
+		name = "default name";
+	}
+
+	public Banker(String inputName) {
+		name = inputName;
+	}
+
 	public BankAccount[] read(String fileName) {
 		// TODO Auto-generated method stub
 		accounts = new BankAccount[20];
@@ -59,7 +67,7 @@ public class Banker {
 		}
 	}
 
-	public String greeter(String name) {
-		return "hello" + name;
+	public String greeter(String inputName) {
+		return "Hello " + inputName + " I am " + name;
 	}
 }
