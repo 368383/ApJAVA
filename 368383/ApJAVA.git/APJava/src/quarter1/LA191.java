@@ -186,12 +186,12 @@ public class LA191 {
 
 	public static int[] read(String fileName) {
 		// TODO Auto-generated method stub
-		int[] readData = new int[100];
+		int[] readData = new int[1000];
 		System.out.println("Reading File from Java code");
 		try {
 			File file = new File(fileName);
 			Scanner in = new Scanner(file);
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1000; i++) {
 				int bal = in.nextInt();
 				readData[i] = bal;
 			}
