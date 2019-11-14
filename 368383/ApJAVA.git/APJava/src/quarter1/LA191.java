@@ -38,7 +38,7 @@ public class LA191 {
 			sum = sum + index;
 		}
 		double average = sum / data.length;
-		System.out.println("Sum " + average);
+		System.out.println("Mean " + average);
 		return average;
 	}
 
@@ -98,7 +98,7 @@ public class LA191 {
 		printIndex(data);
 		// System.out.println("PROCESSING FINAL DATA");
 		if (data.length % 2 == 1) {
-			System.out.println("Final medium - approximated " + data[data.length / 2]);
+			System.out.println("Final medium - approximated " + (double) data[data.length / 2]);
 		} else if (data.length != 2) {
 			System.out.println(
 					"Final medium - approximated " + (double) (data[data.length / 2 - 1] + data[data.length / 2]) / 2);
@@ -128,9 +128,9 @@ public class LA191 {
 
 	private static void printIndex(int[] given) {
 		for (int currentIndex : given) {
-			System.out.println(currentIndex);
+			// System.out.println(currentIndex);
 		}
-		System.out.println("CYCLE COMPLETED");
+		// System.out.println("CYCLE COMPLETED");
 
 	}
 
@@ -166,7 +166,7 @@ public class LA191 {
 
 		for (int beta = 0; beta < modeHolder.length; beta++) {
 			if (modeHolder[beta] == max) {
-				System.out.println("Quantity is  " + unique[beta]);
+				System.out.println("Quantity MODE  " + unique[beta]);
 			}
 		}
 
@@ -186,12 +186,12 @@ public class LA191 {
 
 	public static int[] read(String fileName) {
 		// TODO Auto-generated method stub
-		int[] readData = new int[100];
+		int[] readData = new int[1000];
 		System.out.println("Reading File from Java code");
 		try {
 			File file = new File(fileName);
 			Scanner in = new Scanner(file);
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1000; i++) {
 				int bal = in.nextInt();
 				readData[i] = bal;
 			}
