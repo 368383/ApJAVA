@@ -15,12 +15,16 @@ public class NumberTest {
 		System.out.println("WRONG ARRAY");
 
 		wrongReverse(array);
+		print(array);
+
 		System.out.println("RIGHT ARRAY");
-
 		rightReverse(array);
-		System.out.println("REVERSE ARRAY");
+		print(array);
 
+		System.out.println("REVERSE ARRAY");
 		goodReverse(array);
+		print(array);
+
 	}
 
 	public static void print(int[] displayArray) {
@@ -39,11 +43,10 @@ public class NumberTest {
 		int k = 0;
 
 		for (int current : a) {
-
 			current = array[k];
 			k++;
 		}
-		print(a);
+
 	}
 
 	public static void rightReverse(int[] a) {
@@ -54,17 +57,22 @@ public class NumberTest {
 		for (int i = 0; i < a.length; i++) {
 			a[i] = array[i];
 		}
-		print(a);
+
+//		for (int i = 0; i < a.length; i++) {
+//			a[i] = array[i];
+//		}
+
 	}
 
 	public static void goodReverse(int[] a) {
-		for (int i = 0; i < a.length; i++) {
+
+		for (int i = 0; i < a.length/2; i++) {
 			int storageEnd = a[a.length - i - 1];
 			int beginStorage = a[i];
+		//	System.out.println("BEGIN " + beginStorage + " END " + storageEnd);
 			a[i] = storageEnd;
-			a[a.length - 1 - i] = beginStorage;
+			//a[a.length - 1 - i] = beginStorage;
 		}
-		print(a);
+	//	print(a);
 	}
-
 }
