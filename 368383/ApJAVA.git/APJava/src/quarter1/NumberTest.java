@@ -40,12 +40,14 @@ public class NumberTest {
 		for (int i = 0; i < a.length; i++) {
 			array[i] = a[a.length - i - 1];
 		}
+
+		a = array;
 		int k = 0;
 
-		for (int current : a) {
-			current = array[k];
-			k++;
-		}
+//		for (int current : a) {
+//			current = array[k];
+//			k++;
+//		}
 
 	}
 
@@ -66,13 +68,18 @@ public class NumberTest {
 
 	public static void goodReverse(int[] a) {
 
-		for (int i = 0; i < a.length/2; i++) {
+		for (int i = 0; i < a.length / 2; i++) {
 			int storageEnd = a[a.length - i - 1];
+			// System.out.println("STORAgE END " + storageEnd);
 			int beginStorage = a[i];
-		//	System.out.println("BEGIN " + beginStorage + " END " + storageEnd);
+			// System.out.println("BEGIN STORE " + beginStorage);
+			a[a.length - i - 1] = beginStorage;
+			// System.out.println("BEGIN " + beginStorage + " END " + storageEnd);
 			a[i] = storageEnd;
-			//a[a.length - 1 - i] = beginStorage;
+			// System.out.println(a[i]);
+			// System.out.println(a[a.length - 1]);
+			// a[a.length - 1 - i] = beginStorage;
 		}
-	//	print(a);
+		// print(a);
 	}
 }
