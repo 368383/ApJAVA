@@ -1,7 +1,7 @@
-Aaron   950.0
-Abdiel   1001.0
+Aaron   800.0
+Abdiel   801.0
 Abdullah   1002.0
-Abel   1003.0
+Abel   803.0
 Abraham   1004.0
 Abram   1005.0
 Adam   1006.0
@@ -9,10 +9,10 @@ Adan   1007.0
 Addison   1008.0
 Aden   1009.0
 Aditya   1010.0
-Adolfo   1011.0
+Adolfo   811.0
 Adonis   1012.0
 Adrian   1013.0
-Adriel   1014.0
+Adriel   814.0
 Adrien   1015.0
 Agustin   1016.0
 Ahmad   1017.0
