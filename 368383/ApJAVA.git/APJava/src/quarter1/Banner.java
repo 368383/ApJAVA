@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Banner {
-	public static String alphabet = "abcdefghijklmnopqrstuvwxyz";
-	public static String[] asciiletters = new String[183];
+	public static String alphabet = "abcdefghijklmnopqrstuvwxyz ";
+	public static String[] asciiletters = new String[190];
 	public static int[] index;
 	public static String[] allocation = new String[366];
 
@@ -45,20 +45,27 @@ public class Banner {
 		System.out.println("INPUT " + input);
 		for (int l = 0; l < alphabet.length(); l++) {
 			if (alphabet.substring(l, l + 1).equals(input)) {
-				System.out.println("Requested letter is this index of alpahbet " + (l + 1));
+				// System.out.println("Requested letter is this index of alpahbet " + (l + 1));
 				return l;
 			}
 		}
-		System.out.println("NO VALUE DETECTED");
-		return 0;
+		// System.out.println("NO VALUE DETECTED");
+		return 26;
+	}
+
+	public static void space() {
+		System.out.print("      ");
 	}
 
 	public static void output() {
 		int counter = 0;
 		for (int i = 0; i < 7; i++) {
 			for (int ascii : index) {
-				System.out.print(asciiletters[ascii * 7 + counter]);
-			
+				if (ascii == 26) {
+					space();
+				} else {
+					System.out.print(asciiletters[ascii * 7 + counter]);
+				}
 			}
 			System.out.println();
 			counter++;
@@ -67,8 +74,12 @@ public class Banner {
 
 	public static String input() {
 		Scanner sc = new Scanner(System.in);
-		String alpha = sc.next();
-		return alpha;
+		String alpha = sc.nextLine();
+		System.out.println("INPUT " + alpha);
+		if (alpha.contains(" ")) {
+			System.out.println("WARNING SPACE DTECTED");
+		}
+		return alpha.toLowerCase();
 	}
 
 	public static void read() {
@@ -86,7 +97,8 @@ public class Banner {
 			// Read file line by line and print on the console
 			for (int i = 0; i < 183; i++) {
 				String name = in.next();
-				asciiletters[i] = name.replace("\n", "").replace("\r", "");;
+				asciiletters[i] = name.replace("\n", "").replace("\r", "");
+				;
 			}
 			// Close the buffer reader
 			in.close();
