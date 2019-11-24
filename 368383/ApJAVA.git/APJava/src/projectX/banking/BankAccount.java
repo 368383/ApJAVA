@@ -1,5 +1,7 @@
 package projectX.banking;
 
+import java.util.StringTokenizer;
+
 public class BankAccount {
 	private double balance;
 	private String name;
@@ -29,6 +31,17 @@ public class BankAccount {
 		balance = 0;
 		name = "guest";
 		annualServiceFee = 1;
+	}
+
+	public BankAccount(String record) {
+		StringTokenizer st = new StringTokenizer(record);
+		name = st.nextToken();
+		balance = Integer.parseInt(st.nextToken());
+		annualServiceFee = 1;
+		if (st.hasMoreTokens()) {
+			System.out.println("Record error:" + st.nextToken());
+		}
+
 	}
 
 	public BankAccount(String userName, double amount) {
@@ -73,6 +86,6 @@ public class BankAccount {
 	}
 
 	public String toFile() {
-		return name + "   " + balance + "\n";
+		return name + ":" + balance;
 	}
 }
