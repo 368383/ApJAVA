@@ -9,24 +9,12 @@ public class MathLeagueqQ10 {
 	public static double smallest = 0;
 
 	public static void main(String[] args) {
-		// System.out.println("baseValue " + baseValue + "\t UpperValue " + limitValue);
 		double answer = recursive2(baseValue, limitValue);
 		if (solved) {
 			System.out.println("SOLVED " + answer);
 		} else {
 			System.out.println("CANNOT BE SOLVED");
 		}
-
-//		y = y(x);
-//		smallest = sum(x, y);
-//		System.out.println("X INPUT: " + x + "\tSUMMATION " + "\tSmallest: " + smallest);
-//
-//		x = x + increment;
-//		y = y(x);
-//		double answer = recurisve(x, y);
-//		// loopMethod();
-//		System.out.println(answer);
-
 	}
 
 	private static double recurisve(double XInput, double YInput) {
@@ -46,21 +34,9 @@ public class MathLeagueqQ10 {
 
 	private static double recursive2(double lowerValue, double upperValue) {
 		baseValue = lowerValue;
-
-		// System.out.println(
-		// "=======================" + "NEXT SEQUENCE " +
-		// "=============================================");
-		// System.out.println("Upper Value " + upperValue + "\tBase Value " + baseValue
-		// + "\t Lower Value" + lowerValue);
-		// System.out.println("_____________________________________________");
-
 		if (upperValue - lowerValue < increment) {
-			// System.out.println("less than condition "
-			// + Math.abs(Math.abs(sum(lowerValue, y(lowerValue))) -
-			// Math.abs(sum(upperValue, y(upperValue)))));
-			// System.out.println("PRECISION LIMIT");
 			solved = true;
-			System.out.println("LOWER VALUE " + lowerValue);
+			System.out.println("LOWER VALUE " + lowerValue + "\tUPPER VALUE " + upperValue);
 			return lowerValue;
 		}
 
@@ -71,21 +47,16 @@ public class MathLeagueqQ10 {
 			double top = baseValue + (domain / 10) * (i + 1);
 			double LowerTolerance = sum(base, y(base));
 			double UpperTolerance = sum(top, y(top));
-
-			// System.out.println("ORDERED PAIRS\t" + "(" + base + "," + LowerTolerance +
-			// ")" + "\t" + "(" + top + ","
-			// + UpperTolerance + ")");
 			if (UpperTolerance - LowerTolerance > 0) {
-//				System.out.println("CHANGE DETECTED  x | " + "\t LOWER: " + base + "\t UPPER: " + top);
-//				System.out.println(
-//						"CHANGE DETECTED  y | " + "\t LOWER X: " + LowerTolerance + "\t UPPER: " + UpperTolerance);
-
 				recursive2(base, top);
 				break;
 			} else {
 			}
 		}
+		solved = false;
+		System.out.println("ERROR\t" + lowerValue);
 		return 0;
+
 	}
 
 	private static void loopMethod() {
