@@ -2,18 +2,23 @@ package projectX;
 
 public class MathLeagueqQ10 {
 
-	public static double increment = 0.0001;
+	public static double increment = 0.01;
 	public static double x = 0.08;
 	public static double y = 0;
-	public static double baseValue = 0;
-	public static double limitValue = 0.25;
-
+	public static double baseValue = -5;
+	public static double limitValue = 5;
+	public static boolean solved = false;
 	public static double smallest = 0;
 
 	public static void main(String[] args) {
 		// System.out.println("baseValue " + baseValue + "\t UpperValue " + limitValue);
 		double answer = recursive2(baseValue, limitValue);
-		System.out.println("ANSWER: " + answer);
+		if (solved) {
+			System.out.println("SOLVED " + answer);
+		} else {
+			System.out.println("CANNOT BE SOLVED");
+		}
+
 //		y = y(x);
 //		smallest = sum(x, y);
 //		System.out.println("X INPUT: " + x + "\tSUMMATION " + "\tSmallest: " + smallest);
@@ -42,22 +47,33 @@ public class MathLeagueqQ10 {
 	}
 
 	private static double recursive2(double lowerValue, double upperValue) {
+		baseValue = lowerValue;
 
-		if (Math.abs(sum(lowerValue, y(lowerValue)) - sum(upperValue, y(upperValue))) < increment) {
+		System.out.println("NEXT SEQUENCE " + "=============================================");
+		System.out.println("Upper Value " + upperValue + "\tBase Value " + baseValue + "\t Lower Value" + lowerValue);
+		System.out.println("_____________________________________________");
+
+		if (upperValue - lowerValue < increment) {
+			System.out.println("less than condition "
+					+ Math.abs(Math.abs(sum(lowerValue, y(lowerValue))) - Math.abs(sum(upperValue, y(upperValue)))));
 			System.out.println("PRECISION LIMIT");
 			return 0;
 		}
+
 		double domain = upperValue - lowerValue;
 		System.out.println("domain " + domain);
-		for (int i = 0; i < 10; i = i + 2) {
+		for (int i = 0; i < 10; i = i + 1) {
 			double base = baseValue + (domain / 10) * i;
 			double top = baseValue + (domain / 10) * (i + 1);
 			double LowerTolerance = sum(base, y(base));
 			double UpperTolerance = sum(top, y(top));
-			System.out.println("(" + base + "," + LowerTolerance + ")" + "\t" + "(" + top + "," + UpperTolerance + ")");
+			System.out.println();
+			System.out.println("ORDERED PAIRS\t" + "(" + base + "," + LowerTolerance + ")" + "\t" + "(" + top + ","
+					+ UpperTolerance + ")");
 			if (UpperTolerance - LowerTolerance < 0) {
 				System.out.println("CHANGE DETECTED | " + "\t LOWER: " + base + "\t UPPER: " + top);
 				recursive2(base, top);
+				break;
 			} else {
 			}
 		}
@@ -86,12 +102,10 @@ public class MathLeagueqQ10 {
 	}
 
 	public static double y(double x) {
-
 		return (1 - 4 * x) / 9;
 	}
 
 	public static double sum(double x2, double y2) {
 		return 1 / x2 + 1 / y2;
 	}
-
 }
