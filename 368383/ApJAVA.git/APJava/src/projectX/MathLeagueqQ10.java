@@ -36,7 +36,8 @@ public class MathLeagueqQ10 {
 		baseValue = lowerValue;
 		if (upperValue - lowerValue < increment) {
 			solved = true;
-			System.out.println("LOWER VALUE " + lowerValue + "\tUPPER VALUE " + upperValue);
+			// System.out.println("LOWER VALUE " + lowerValue + "\tUPPER VALUE " +
+			// upperValue);
 			return lowerValue;
 		}
 
@@ -48,11 +49,13 @@ public class MathLeagueqQ10 {
 			double LowerTolerance = sum(base, y(base));
 			double UpperTolerance = sum(top, y(top));
 			if (UpperTolerance - LowerTolerance > 0) {
-				recursive2(base, top);
-				break;
+				return recursive2(base, top);
+
 			} else {
+
 			}
 		}
+
 		solved = false;
 		System.out.println("ERROR\t" + lowerValue);
 		return 0;

@@ -98,6 +98,7 @@ public class Banner {
 			for (int i = 0; i < 183; i++) {
 				String name = in.next();
 				asciiletters[i] = name.replace("\n", "").replace("\r", "");
+			//	asciiletters[i] = name.replace("\n", "");
 				;
 			}
 			// Close the buffer reader
