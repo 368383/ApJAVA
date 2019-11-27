@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Game {
 	public static String[] marks = new String[9];
 	public static boolean[] locations = new boolean[9];
-	public static boolean X = true;
+	public static int[] calcLocations = new int[5];
+	public static boolean userInputIsX = true;
 
 	public static void set() {
 		for (int i = 0; i < marks.length; i++) {
@@ -81,10 +82,10 @@ public class Game {
 				if (charCheck()) {
 					marks[random] = "X";
 					// Computer will now use X
-					X = false;
+					userInputIsX = false;
 				} else {
 					marks[random] = "O";
-					X = true;
+					userInputIsX = true;
 					// Computer will now use O
 				}
 			}
@@ -92,22 +93,37 @@ public class Game {
 	}
 
 	public void calculation() {
-		for (String current : marks) {
-			int i = 0;
-			if (current.equals("X") && X == true) {
-				locations[i] = true;
+		for (int i = 0; i < calcLocations.length; i++) {
+			int slot = calcLocations[i];
+			for (int l = i; i < calcLocations.length; l++) {
+				int difference = calcLocations[l] - slot;
+				if (difference == 2) {
+
+				}
+				if (difference == 6) {
+
+				}
 			}
-			locations[i] = false;
-			i++;
-		}
-
-		if (X) {
-			for (int i = 0; i < marks.length; i++) {
-
-			}
-		} else {
-
 		}
 	}
 
+	public void determineSlots() {
+		if (userInputIsX) {
+			for (String current : marks) {
+				int i = 0;
+				if (current.equals("X")) {
+					calcLocations[i] = i;
+				}
+				i++;
+			}
+		} else {
+			for (String current : marks) {
+				int i = 0;
+				if (current.equals("O")) {
+					calcLocations[i] = i;
+				}
+				i++;
+			}
+		}
+	}
 }
