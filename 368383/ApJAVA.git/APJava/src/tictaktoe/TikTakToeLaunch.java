@@ -62,6 +62,9 @@ public class TikTakToeLaunch {
 		slot = play.setSlot();
 		input = play.setInput();
 		play.input(slot, input);
+
+		play.determineSlots();
+		play.calculation();
 	}
 
 }

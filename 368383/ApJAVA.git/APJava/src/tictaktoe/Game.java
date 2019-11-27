@@ -7,6 +7,7 @@ public class Game {
 	public static boolean[] locations = new boolean[9];
 	public static int[] calcLocations = new int[5];
 	public static boolean userInputIsX = true;
+	public static String computerInput = "X";
 
 	public static void set() {
 		for (int i = 0; i < marks.length; i++) {
@@ -86,6 +87,7 @@ public class Game {
 				} else {
 					marks[random] = "O";
 					userInputIsX = true;
+					computerInput = "O";
 					// Computer will now use O
 				}
 			}
@@ -93,16 +95,62 @@ public class Game {
 	}
 
 	public void calculation() {
-		for (int i = 0; i < calcLocations.length; i++) {
+		int i = 0;
+		boolean alpha = true;
+		while (alpha) {
+			System.out.println("I value " + i);
 			int slot = calcLocations[i];
 			for (int l = i; i < calcLocations.length; l++) {
 				int difference = calcLocations[l] - slot;
-				if (difference == 2) {
-
+				if (difference == 3) {
+					if (l > 5) {
+						marks[i - 3] = computerInput;
+					} else {
+						marks[l + 3] = computerInput;
+					}
+					alpha = false;
+					break;
 				}
 				if (difference == 6) {
-
+					marks[l - 3] = computerInput;
+					alpha = false;
+					break;
 				}
+				if (difference == 1) {
+					if (l == 2 || l == 5 || l == 8) {
+						marks[i - 1] = computerInput;
+					} else {
+						marks[l + 1] = computerInput;
+					}
+					alpha = false;
+					break;
+				}
+				if (difference == 8) {
+					marks[l - 4] = computerInput;
+					alpha = false;
+					break;
+				}
+
+				if (difference == 4 && calcLocations[l] % 2 == 0) {
+					if (calcLocations[l] == 8) {
+						marks[0] = computerInput;
+					} else {
+						marks[8] = computerInput;
+					}
+					alpha = false;
+					break;
+				}
+				if (difference == 2 && calcLocations[l] % 2 == 0) {
+					if (calcLocations[l] == 6) {
+						marks[2] = computerInput;
+					} else {
+						marks[6] = computerInput;
+					}
+					alpha = false;
+					break;
+				}
+
+				i++;
 			}
 		}
 	}
