@@ -7,7 +7,7 @@ public class Game {
 	public static boolean[] locations = new boolean[9];
 	public static int[] calcLocations = new int[5];
 	public static boolean userInputIsX = true;
-	public static String computerInput = "X";
+	public static String computerInput = "";
 
 	public static void set() {
 		for (int i = 0; i < marks.length; i++) {
@@ -52,7 +52,11 @@ public class Game {
 				Scanner sc = new Scanner(System.in);
 				String input = sc.next().toUpperCase();
 				if (isStringOnlyAlphabet(input) && (input.equals("X") || input.equals("O"))) {
-					return input;
+					if (input.equals(computerInput)) {
+						System.out.println("Computer has chosen the value x, select O");
+					} else {
+						return input;
+					}
 				}
 				System.out.println("X or O");
 			} catch (Exception E) {
@@ -74,37 +78,21 @@ public class Game {
 		return true;
 	}
 
-	public void startingCondition() {
-
-		if (marks[4].equals(" ")) {
-			marks[4] = "X";
-		} else {
-			int random = (int) Math.random() * 9;
-			if (charCheck()) {
-				marks[random] = "X";
-				// Computer will now use X
-				userInputIsX = false;
-			} else {
-				marks[random] = "O";
-				userInputIsX = true;
-				computerInput = "O";
-				// Computer will now use O
-			}
-
-		}
-	}
-
 	public void calculation() {
 		int i = 0;
 		boolean alpha = true;
 		while (alpha) {
 			System.out.println("I value " + i);
 			int slot = calcLocations[i];
-			for (int l = i; i < calcLocations.length; l++) {
-				System.out.println("Computer calculating");
+			for (int l = i + 1; i < calcLocations.length - 1; l++) {
+				// System.out.println("Computer calculating");
 				int difference = calcLocations[l] - slot;
-				if(marks) {
-					
+				System.out.println("calcLocation " + calcLocations[l] + "\t slot " + slot);
+				System.out.println("DEBUG DIFFERENCE: " + difference);
+				if (marks[4].equals(" ")) {
+					marks[4] = computerInput;
+					alpha = false;
+					break;
 				}
 				if (difference == 3) {
 					if (l > 5) {
@@ -156,7 +144,7 @@ public class Game {
 
 				i++;
 			}
-			while (true) {
+			while (alpha) {
 				int choose = (int) random();
 				if (isOccupied(choose)) {
 					alpha = false;
@@ -190,6 +178,8 @@ public class Game {
 				int i = 0;
 				if (current.equals("X")) {
 					calcLocations[i] = i;
+					computerInput = "O";
+
 				}
 				i++;
 			}

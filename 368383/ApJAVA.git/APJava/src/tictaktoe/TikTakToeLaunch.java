@@ -62,9 +62,7 @@ public class TikTakToeLaunch {
 		slot = play.setSlot();
 		input = play.setInput();
 		play.input(slot, input);
-		if (round == 0) {
-			play.startingCondition();
-		}
+
 		Display.print();
 		System.out.println("COMPUTERS TURN");
 		play.determineSlots();
@@ -73,13 +71,11 @@ public class TikTakToeLaunch {
 
 	private static void computerInput(Game play, int round) {
 		System.out.println("COMPUTERS TURN");
-		if (round == 0) {
-			play.startingCondition();
-		} else {
-			play.determineSlots();
-			play.calculation();
-			Display.print();
-		}
+		play.computerInput = "X";
+		play.determineSlots();
+		play.calculation();
+		Display.print();
+
 		String input;
 		int slot;
 		slot = play.setSlot();
