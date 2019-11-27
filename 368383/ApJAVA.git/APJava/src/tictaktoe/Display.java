@@ -1,7 +1,6 @@
 package tictaktoe;
 
 public class Display {
-	public static String[] printArray = Game.getInputs();
 	// public static String[] printArray = { "A", "B", "C", "D", "E", "F", "G", "H",
 	// "I" };
 
@@ -11,6 +10,8 @@ public class Display {
 //	}
 
 	public static void print() {
+		String[] printArray = Game.getInputs();
+
 		int count = 0;
 		for (int i = 0; i < 3; i++) {
 

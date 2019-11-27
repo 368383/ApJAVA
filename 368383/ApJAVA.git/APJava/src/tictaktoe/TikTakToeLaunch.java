@@ -33,7 +33,7 @@ public class TikTakToeLaunch {
 		int slot = 0;
 		while (round <= 8) {
 			Display.print();
-			humanInput(play);
+			humanInput(play, round);
 			round++;
 		}
 	}
@@ -49,22 +49,43 @@ public class TikTakToeLaunch {
 		while (round <= 8) {
 			System.out.println("=========NEXT ROUND=======");
 			Display.print();
-			humanInput(play);
+			computerInput(play, round);
 
 			round++;
 		}
 
 	}
 
-	private static void humanInput(Game play) {
+	private static void humanInput(Game play, int round) {
+		String input;
+		int slot;
+		slot = play.setSlot();
+		input = play.setInput();
+		play.input(slot, input);
+		if (round == 0) {
+			play.startingCondition();
+		}
+		Display.print();
+		System.out.println("COMPUTERS TURN");
+		play.determineSlots();
+		play.calculation();
+	}
+
+	private static void computerInput(Game play, int round) {
+		System.out.println("COMPUTERS TURN");
+		if (round == 0) {
+			play.startingCondition();
+		} else {
+			play.determineSlots();
+			play.calculation();
+			Display.print();
+		}
 		String input;
 		int slot;
 		slot = play.setSlot();
 		input = play.setInput();
 		play.input(slot, input);
 
-		play.determineSlots();
-		play.calculation();
 	}
 
 }

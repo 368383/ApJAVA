@@ -74,23 +74,23 @@ public class Game {
 		return true;
 	}
 
-	public void startingCondition(int index) {
-		if (index == 0) {
-			if (marks[4].equals(" ")) {
-				marks[4] = "X";
+	public void startingCondition() {
+
+		if (marks[4].equals(" ")) {
+			marks[4] = "X";
+		} else {
+			int random = (int) Math.random() * 9;
+			if (charCheck()) {
+				marks[random] = "X";
+				// Computer will now use X
+				userInputIsX = false;
 			} else {
-				int random = (int) Math.random() * 9;
-				if (charCheck()) {
-					marks[random] = "X";
-					// Computer will now use X
-					userInputIsX = false;
-				} else {
-					marks[random] = "O";
-					userInputIsX = true;
-					computerInput = "O";
-					// Computer will now use O
-				}
+				marks[random] = "O";
+				userInputIsX = true;
+				computerInput = "O";
+				// Computer will now use O
 			}
+
 		}
 	}
 
@@ -101,7 +101,11 @@ public class Game {
 			System.out.println("I value " + i);
 			int slot = calcLocations[i];
 			for (int l = i; i < calcLocations.length; l++) {
+				System.out.println("Computer calculating");
 				int difference = calcLocations[l] - slot;
+				if(marks) {
+					
+				}
 				if (difference == 3) {
 					if (l > 5) {
 						marks[i - 3] = computerInput;
@@ -152,11 +156,36 @@ public class Game {
 
 				i++;
 			}
+			while (true) {
+				int choose = (int) random();
+				if (isOccupied(choose)) {
+					alpha = false;
+					continue;
+				}
+				marks[choose] = computerInput;
+				alpha = false;
+				System.out.println("Computer chose slot: " + choose + "\t alpha value " + alpha);
+
+				break;
+			}
+
 		}
+	}
+
+	public static boolean isOccupied(int testSlot) {
+		if (marks[testSlot].equals(" ")) {
+			return false;
+		}
+		return true;
+	}
+
+	public static double random() {
+		return (Math.random() * 9);
 	}
 
 	public void determineSlots() {
 		if (userInputIsX) {
+			System.out.println("DEBUG | COMPUTER WILL CHOOSE O");
 			for (String current : marks) {
 				int i = 0;
 				if (current.equals("X")) {
@@ -165,6 +194,7 @@ public class Game {
 				i++;
 			}
 		} else {
+			System.out.println("DEBUG | COMPUTER WILL CHOOSE X");
 			for (String current : marks) {
 				int i = 0;
 				if (current.equals("O")) {
