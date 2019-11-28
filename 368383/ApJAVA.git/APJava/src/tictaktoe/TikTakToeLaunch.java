@@ -7,13 +7,14 @@ public class TikTakToeLaunch {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		Game play = new Game();
+		play.set();
 		if (random() == 1) {
 			System.out.println("Human Input");
-			humanPlay();
+			humanPlay(play);
 		} else {
 			System.out.println("Computer Input");
-			computerPlay();
+			computerPlay(play);
 		}
 
 	}
@@ -24,10 +25,10 @@ public class TikTakToeLaunch {
 		return alpha;
 	}
 
-	public static void humanPlay() {
+	public static void humanPlay(Game play) {
+
 		System.out.println(
 				"To choose slot, insert value from 1 to 9 when prompted | To input, insert either X or an O (not case sensitive)");
-		Game play = new Game();
 
 		String input = null;
 		int slot = 0;
@@ -38,11 +39,9 @@ public class TikTakToeLaunch {
 		}
 	}
 
-	public static void computerPlay() {
+	public static void computerPlay(Game play) {
 		System.out.println(
 				"To choose slot, insert value from 1 to 9 when prompted | To input, insert either X or an O (not case sensitive)");
-
-		Game play = new Game();
 
 		String input = null;
 		int slot = 0;
