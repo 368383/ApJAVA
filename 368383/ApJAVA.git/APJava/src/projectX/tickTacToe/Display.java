@@ -1,16 +1,9 @@
-package tictaktoe;
+package projectX.tickTacToe;
 
 public class Display {
-	// public static String[] printArray = { "A", "B", "C", "D", "E", "F", "G", "H",
-	// "I" };
-
-//	public static void main(String args[]) {
-//
-//		print();
-//	}
 
 	public static void print() {
-		String[] printArray = Game.getInputs();
+		String[] printArray = Game.getMarks();
 
 		int count = 0;
 		for (int i = 0; i < 3; i++) {
