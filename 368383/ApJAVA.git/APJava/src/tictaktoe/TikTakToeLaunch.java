@@ -32,11 +32,20 @@ public class TikTakToeLaunch {
 
 		String input = null;
 		int slot = 0;
-		while (round <= 8) {
+		while (round <= 6) {
+			if (round == 6) {
+				break;
+			} else {
+				System.out.println("=========NEXT ROUND " + round + " ===========");
+			}
 			Display.print();
-			humanInput(play, round);
+			if (humanInput(play, round)) {
+				System.out.println("PROGRAM COMPLETE");
+				break;
+			}
 			round++;
 		}
+
 	}
 
 	public static void computerPlay(Game play) {
@@ -45,41 +54,48 @@ public class TikTakToeLaunch {
 
 		String input = null;
 		int slot = 0;
-		while (round <= 8) {
-			System.out.println("=========NEXT ROUND=======");
+		while (round <= 5) {
+
 			Display.print();
-			computerInput(play, round);
+			if (computerInput(play, round)) {
+				System.out.println("Program complete");
+			}
 
 			round++;
+
 		}
 
 	}
 
-	private static void humanInput(Game play, int round) {
-		String input;
-		int slot;
-		slot = play.setSlot();
-		input = play.setInput();
+	private static boolean humanInput(Game play, int round) {
+		int slot = play.setSlot();
+		String input = play.setInput();
 		play.input(slot, input);
 
 		Display.print();
 		System.out.println("COMPUTERS TURN");
 		play.determineSlots();
-		play.calculation();
+		return play.calculation();
 	}
 
-	private static void computerInput(Game play, int round) {
+	private static boolean computerInput(Game play, int round) {
 		System.out.println("COMPUTERS TURN");
 		play.computerInput = "X";
 		play.determineSlots();
-		play.calculation();
+		if (play.calculation()) {
+			return true;
+		}
 		Display.print();
-
-		String input;
-		int slot;
-		slot = play.setSlot();
-		input = play.setInput();
-		play.input(slot, input);
+		if (round != 5) {
+			String input;
+			int slot;
+			slot = play.setSlot();
+			input = play.setInput();
+			play.input(slot, input);
+		} else {
+			System.out.println("program done");
+		}
+		return false;
 
 	}
 

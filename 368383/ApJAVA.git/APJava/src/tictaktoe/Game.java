@@ -6,6 +6,7 @@ public class Game {
 	public static String[] marks = new String[9];
 	public static boolean[] locations = new boolean[9];
 	public static int[] calcLocations = new int[9];
+	public static int[] offensiveLocation = new int[9];
 	public static boolean userInputIsX = true;
 	public static String computerInput = "";
 
@@ -87,13 +88,81 @@ public class Game {
 		return marks;
 	}
 
-	public void calculation() {
+	public boolean calculation() {
+		boolean win = false;
+		System.out.println("againt human");
+		boolean alpha = generalAlg(calcLocations);
+
+		if (alpha == true) {
+			System.out.println("for self");
+
+			alpha = generalAlg(offensiveLocation);
+		}
+
+		System.out.println("LOGICAL PROCESSING DONE " + alpha);
+
+		System.out.println("Corner selection");
+		int[] corners = { 0, 2, 6, 8 };
+		if (alpha == true) {
+			for (int random = 0; random < corners.length; random++) {
+				if (isOccupied(corners[random]) == true) {
+					// System.out.println("OCCUPIED");
+				} else {
+					// System.out.println(corners[random] + "\tINPUT");
+					marks[corners[random]] = computerInput;
+					alpha = false;
+					break;
+				}
+			}
+		}
+		if (checkWin(offensiveLocation, 0) || checkWin(calcLocations, 0)) {
+			System.out.println("Winner!");
+			win = true;
+		} else {
+
+			// if no other options remain
+			if (alpha == true) {
+
+				for (int k = 0; k < 9; k++) {
+					if (isOccupied(k) == true) {
+					} else {
+						marks[k] = computerInput;
+						break;
+					}
+				}
+			}
+		}
+		return win;
+
+	}
+
+	private boolean checkWin(int[] array, int increment) {
+		for (int i = 0; i < 3; i = i + 1) {
+			if (array[i * 3 + increment] + 2 == array[i * 3 + 2 + increment]) {
+				System.out.println("You lost");
+				return true;
+			}
+			if (array[i + increment] + 6 == array[i + 6 + increment]) {
+				System.out.println("You lost");
+				return true;
+			}
+		}
+		if (array[0 + increment] + 8 == array[8 + increment] || array[2 + increment] + 4 == array[6 + increment]) {
+			System.out.println("You lost");
+
+			return true;
+		}
+		return false;
+	}
+
+	private boolean generalAlg(int[] theta) {
+
 		int index = 0;
 		boolean alpha = true;
 		while (alpha) {
-			int slot = calcLocations[index];
+			int slot = theta[index];
 			for (int beta = index + 1; beta < locations.length; beta++) {
-				int difference = calcLocations[beta] - slot;
+				int difference = theta[beta] - slot;
 				System.out.println("BASE SLOT: " + slot + "\t index: " + index + "\t difference: " + difference
 						+ "\t beta: " + beta);
 				if (marks[4].equals(" ")) {
@@ -104,71 +173,84 @@ public class Game {
 				}
 				// OPTION ONE - NEXT TO EACH OTHER
 				if ((difference == 1) && (beta % 3 != 0)) {
+					System.out.println("OPTION ONE");
 					if ((beta == 1 || beta == 4 || beta == 7) && (!isOccupied(beta + 1))) {
 						System.out.println("OPTION ONE A");
 						marks[beta + 1] = computerInput;
+						alpha = false;
+						break;
 					} else {
-						if (!isOccupied(beta - 1)) {
+						if (beta < 9 && (beta - 1 > 0) && !isOccupied(beta - 1)) {
 							System.out.println("OPTION ONE B");
 							marks[beta - 1] = computerInput;
+							alpha = false;
+							break;
 						} else {
-							// remaining slot
 						}
 					}
-					alpha = false;
-					break;
 				}
 				// OPTION TWO A - SAME ROW
-				if ((difference == 2) && slot % 3 == 0 && (!isOccupied(beta - 1))) {
+				if (beta < 9 && beta - 1 >= 0 && (difference == 2) && slot % 3 == 0
+						&& (isOccupied(beta - 1) == false)) {
 					System.out.println("OPTION TWO A");
 					marks[beta - 1] = computerInput;
 					alpha = false;
 					break;
 				}
 				// OPTION TWO B - DIAGONALS RIGHT BOUND
-				if ((difference == 2)) {
+				if (beta < 9 && (difference == 2)) {
+					System.out.println("OPTION TWO B");
 					if (beta == 4 && !isOccupied(6)) {
 						System.out.println("OPTION TWO B A");
 						marks[beta + 2] = computerInput;
+						alpha = false;
+						break;
 					} else {
-						if (!isOccupied(2)) {
+						if (beta - 4 > 0 && !isOccupied(2)) {
 							System.out.println("OPTION TWO B B");
 							marks[beta - 4] = computerInput;
+							alpha = false;
+							break;
 						}
 					}
-					alpha = false;
-					break;
 				}
 				// OPTION THREE VERTICAL NEXT
-				if (difference == 3) {
+				if (beta < 9 && difference == 3) {
 					System.out.println("OPTION THREE A");
 					if ((beta == 3 || beta == 4 || beta == 5) && !isOccupied(beta + 3)) {
 						marks[beta + 3] = computerInput;
+						alpha = false;
+						break;
 					} else {
-						if (!isOccupied(beta - 6)) {
+						if (beta - 6 > 0 && !isOccupied(beta - 6)) {
 							System.out.println("OPTION THREE B");
 							marks[beta] = computerInput;
+							alpha = false;
+							break;
 						}
 					}
-					alpha = false;
-					break;
+
 				}
 				// OPTION FOUR LEFT BOUND DIAGONALS
-				if ((difference == 4)) {
-					if (beta == 4 && !isOccupied(beta)) {
+				if (beta < 9 && (difference == 4)) {
+					System.out.println("OPTION FOUR");
+					if (beta == 4 && !isOccupied(beta + 4)) {
 						System.out.println("OPTION FOUR A");
 						marks[beta + 4] = computerInput;
+						alpha = false;
+						break;
 					} else {
-						if (!isOccupied(beta)) {
+						if (beta - 8 > 0 && !isOccupied(beta - 8)) {
 							System.out.println("OPTION FOUR B");
 							marks[beta - 8] = computerInput;
+							alpha = false;
+							break;
 						}
 					}
-					alpha = false;
-					break;
+
 				}
 				// OPTION SIX VERTICAL
-				if (difference == 6 && !isOccupied(beta - 3)) {
+				if (beta - 3 > 0 && difference == 6 && !isOccupied(beta - 3)) {
 					System.out.println("OPTION SIX");
 					marks[beta - 3] = computerInput;
 					alpha = false;
@@ -181,21 +263,8 @@ public class Game {
 				break;
 			}
 		}
-		while (alpha) {
-			System.out.println("Corner selection");
-			int[] corners = { 0, 2, 6, 8 };
-			for (int random = 0; random < corners.length; random++) {
-				if (isOccupied(corners[random]) == true) {
-					System.out.println("OCCUPIED");
-				} else {
-					System.out.println(corners[random] + "\tINPUT");
-					marks[corners[random]] = computerInput;
-					alpha = false;
-					break;
-				}
-			}
-		}
-
+		System.out.println("Boolean result " + alpha);
+		return alpha;
 	}
 
 	public static boolean isFilled() {
@@ -208,7 +277,7 @@ public class Game {
 	}
 
 	public static boolean isOccupied(int testSlot) {
-
+		System.out.println("OCCUPIED WITH " + marks[testSlot]);
 		if (marks[testSlot].equals(" ")) {
 			// System.out.println("NOT OCCUPIED");
 			return false;
@@ -230,6 +299,8 @@ public class Game {
 					System.out.println("X DETECTED @ " + i);
 					calcLocations[i] = i;
 					// computerInput = "O";
+				} else {
+					offensiveLocation[i] = i;
 				}
 				i++;
 				// System.out.println("I VALUE " + i);
@@ -241,6 +312,8 @@ public class Game {
 				if (current.equals("O")) {
 					System.out.println("O DETECTED @ " + i);
 					calcLocations[i] = i;
+				} else {
+					offensiveLocation[i] = i;
 				}
 				i++;
 //				System.out.println("I VALUE " + i);
