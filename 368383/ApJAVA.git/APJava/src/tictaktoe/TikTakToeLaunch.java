@@ -1,19 +1,22 @@
 package tictaktoe;
 
 import bankPart2.Utility;
+import projectX.tickTacToe.Display;
 
 public class TikTakToeLaunch {
 	public static int round = 1;
+	public static boolean breakCycle = true;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
-		if (random() == 1) {
+		Game play = new Game();
+		play.set();
+		if (1 == 1) {
 			System.out.println("Human Input");
-			humanPlay();
+			humanPlay(play);
 		} else {
 			System.out.println("Computer Input");
-			computerPlay();
+			computerPlay(play);
 		}
 
 	}
@@ -24,64 +27,66 @@ public class TikTakToeLaunch {
 		return alpha;
 	}
 
-	public static void humanPlay() {
+	public static void humanPlay(Game play) {
 		System.out.println(
 				"To choose slot, insert value from 1 to 9 when prompted | To input, insert either X or an O (not case sensitive)");
-		Game play = new Game();
-
 		String input = null;
 		int slot = 0;
-		while (round <= 8) {
-			Display.print();
-			humanInput(play, round);
-			round++;
+		while (breakCycle) {
+			// Display.print();
+			if (humanInput(play, round) == true) {
+				System.out.println("Program Completion");
+				break;
+			}
+
 		}
 	}
 
-	public static void computerPlay() {
+	public static void computerPlay(Game play) {
 		System.out.println(
 				"To choose slot, insert value from 1 to 9 when prompted | To input, insert either X or an O (not case sensitive)");
 
-		Game play = new Game();
-
 		String input = null;
 		int slot = 0;
-		while (round <= 8) {
+		while (breakCycle) {
 			System.out.println("=========NEXT ROUND=======");
-			Display.print();
-			computerInput(play, round);
-
-			round++;
+			// Display.print();
+			if (computerInput(play, round) == true) {
+				System.out.println("Program Completion");
+				break;
+			}
 		}
 
 	}
 
-	private static void humanInput(Game play, int round) {
-		String input;
-		int slot;
-		slot = play.setSlot();
-		input = play.setInput();
-		play.input(slot, input);
-
+	private static boolean humanInput(Game play, int round) {
 		Display.print();
+		String input = play.setInput();
+		int slot = play.setSlot();
+		play.input(slot, input);
+		Display.print();
+
 		System.out.println("COMPUTERS TURN");
-		play.determineSlots();
+		if (play.determineSlots()) {
+			return true;
+		}
 		play.calculation();
+		return false;
 	}
 
-	private static void computerInput(Game play, int round) {
+	private static boolean computerInput(Game play, int round) {
 		System.out.println("COMPUTERS TURN");
 		play.computerInput = "X";
-		play.determineSlots();
+		if (play.determineSlots()) {
+			return true;
+		}
 		play.calculation();
 		Display.print();
-
-		String input;
-		int slot;
-		slot = play.setSlot();
-		input = play.setInput();
+		String input = play.setInput();
+		int slot = play.setSlot();
 		play.input(slot, input);
-
+		Display.print();
+		return false;
 	}
 
 }
