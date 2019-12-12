@@ -16,12 +16,10 @@ public class Permutations {
 	public static ArrayList nextPermutation(ArrayList<Integer> beta) {
 		while (beta.size() < 10) {
 			int random = (int) (Math.random() * 10 + 1);
-			if (!beta.contains(random)) {
+			if (!beta.contains(random))
 				beta.add(random);
-			}
 		}
 		return beta;
-
 	}
 
 }
