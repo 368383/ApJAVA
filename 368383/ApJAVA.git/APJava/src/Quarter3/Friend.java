@@ -5,7 +5,7 @@ public class Friend {
 	public String lastName;
 	public String userLevel;
 	public int level;
-	public String[] levelList = { "best", "ultra", "great", "good", "acquaintance" };
+	public String[] levelList = { "acquaintance", "good", "great", "ultra", "best" };
 
 	public Friend(String firstName, String lastName, int level) {
 		this.firstName = firstName;

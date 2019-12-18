@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FriendGroup {
 	ArrayList<Friend> friendList;
-	public String[] levelList = { "best", "ultra", "great", "good", "acquaintance" };
+	public String[] levelList = { "acquaintance", "good", "great", "ultra", "best" };
 
 	public FriendGroup() {
 		friendList = new ArrayList<Friend>();
@@ -16,17 +16,21 @@ public class FriendGroup {
 		}
 	}
 
-	public void findFriend(String first) {
-		if (friendList.contains(first)) {
-			System.out.println(friendList.get(friendList.indexOf(first)).toString());
-		} else {
-			System.out.println("Friend does not exist");
+	public String findFriend(String first) {
+		int i = 0;
+		while (i < friendList.size()) {
+			if (friendList.get(i).firstName.equals(first)) {
+				return friendList.get(i).toString();
+			}
+			i++;
 		}
+		return "Friend does not exist";
 	}
 
 	public void listFriends(int userLevel) {
+		System.out.println(levelList[userLevel] + "\t To be Evaluated");
 		int i = 0;
-		while (friendList.contains(userLevel)) {
+		while (i < friendList.size()) {
 			String eval = friendList.get(i).toString();
 			if (eval.contains(levelList[userLevel])) {
 				System.out.println(eval);
@@ -44,14 +48,23 @@ public class FriendGroup {
 	}
 
 	public void removeFriend(String first) {
-		friendList.remove(friendList.indexOf(first));
+		int i = 0;
+		while (true) {
+			if (friendList.get(i).firstName.equals(first)) {
+				break;
+			}
+			i++;
+		}
+		friendList.remove(i);
 	}
 
-	public void removeAll(String userLevel) {
+	public void removeAll(int alpha) {
+		String userLevel = levelList[alpha];
 		int i = 0;
-		while (friendList.contains(userLevel)) {
+		while (i < friendList.size()) {
 			String eval = friendList.get(i).toString();
 			if (eval.contains(userLevel)) {
+				System.out.println("REMOVAL INDEX " + friendList.get(i));
 				friendList.remove(i);
 			}
 			i++;
@@ -59,7 +72,15 @@ public class FriendGroup {
 	}
 
 	public boolean improvable(String first) {
-		if (friendList.get(friendList.indexOf(first)).getlevel() == 4) {
+		int i = 0;
+		while (true) {
+			if (friendList.get(i).firstName.equals(first)) {
+				break;
+			}
+			i++;
+		}
+		// System.out.println("IMPROVEMENT INDEX " + friendList.get(i).getlevel());
+		if (friendList.get(i).getlevel() == 4) {
 			return false;
 		} else {
 			return true;
@@ -67,11 +88,20 @@ public class FriendGroup {
 	}
 
 	public String improveFriend(String first) {
-		if (improvable(first)) {
+
+		if (!improvable(first)) {
 			return "unable to up";
 		} else {
-			friendList.get(friendList.indexOf(first)).improveFS();
-			return friendList.get(friendList.indexOf(first)).toString();
+			int i = 0;
+
+			while (true) {
+				if (friendList.get(i).firstName.equals(first)) {
+					break;
+				}
+				i++;
+			}
+			friendList.get(i).improveFS();
+			return friendList.get(i).toString();
 		}
 	}
 }
