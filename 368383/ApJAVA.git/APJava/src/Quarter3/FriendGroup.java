@@ -51,6 +51,7 @@ public class FriendGroup {
 		int i = 0;
 		while (true) {
 			if (friendList.get(i).firstName.equals(first)) {
+				i = i - 1;
 				break;
 			}
 			i++;
@@ -66,6 +67,7 @@ public class FriendGroup {
 			if (eval.contains(userLevel)) {
 				System.out.println("REMOVAL INDEX " + friendList.get(i));
 				friendList.remove(i);
+				i = i - 1;
 			}
 			i++;
 		}
