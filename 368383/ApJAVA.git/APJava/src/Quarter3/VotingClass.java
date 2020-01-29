@@ -34,11 +34,15 @@ public class VotingClass {
 		int twoCount = 0;
 		int threeCount = 0;
 		int index = 0;
+		int skip = 0;
+		int count = 0;
 		for (index = 0; index < i.length; index++) {
 			if (!valid(i, index)) {
+				skip++;
 				continue;
 			} else {
-				int count = 0;
+				count++;
+
 				for (int a = 0; a < i[index].length; a++) {
 					if (i[index][a] == 0) {
 
@@ -47,18 +51,25 @@ public class VotingClass {
 
 						case 0:
 							zeroCount++;
+							continue;
 						case 1:
 							oneCount++;
+							continue;
+
 						case 2:
 							twoCount++;
+							continue;
+
 						case 3:
 							threeCount++;
+							continue;
+
 						}
 					}
 				}
 			}
 		}
-		System.out.println("RESULTS");
+		System.out.println("RESULTS " + skip + "\tcount " + count);
 		System.out.println("First Candidate\t" + zeroCount);
 		System.out.println("Second Candidiate\t" + oneCount);
 		System.out.println("Third Candidiate\t" + twoCount);
