@@ -38,6 +38,7 @@ public class VotingClass {
 			if (!valid(i, index)) {
 				continue;
 			} else {
+				int count = 0;
 				for (int a = 0; a < i[index].length; a++) {
 					if (i[index][a] == 0) {
 
