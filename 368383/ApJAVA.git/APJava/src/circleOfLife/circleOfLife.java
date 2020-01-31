@@ -146,27 +146,17 @@ public class circleOfLife {
 					// DEATH
 					originalArray[row][col] = 0;
 					continue;
-
 				case 2:
-					// originalArray[row][col] = 1;
-					// System.out.println("Breach");
 					continue;
-
 				case 3:
 					// BIRTH
 					originalArray[row][col] = 1;
-					// System.out.println("Breach");
 					continue;
 				default:
-// DEATH OVERCROWDING
 					originalArray[row][col] = 0;
-					// System.out.println("Breach");
 					continue;
 
 				}
-//				System.out.println(
-//						"Count " + count + "\t Row and Column " + row + " " + col + " value" + array[row][col]);
-
 			}
 		}
 	}
