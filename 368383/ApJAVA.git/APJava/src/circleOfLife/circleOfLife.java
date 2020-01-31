@@ -4,18 +4,69 @@ import java.io.File;
 import java.util.Scanner;
 
 public class circleOfLife {
+	public static int[][] originalArray = new int[20][20];
 
 	public static void main(String args[]) {
 		int[][] array = read();
-		System.out.println("Originally");
+		originalArray = read();
+		totalCount(array, 0);
+		System.out.println("ORIGINALLY");
+		print(originalArray);
+		for (int i = 0; i < 5; i++) {
+			alg(array);
+			copy(array, originalArray);
+		}
+		System.out.println("AFTER 5 GENERATIONS");
 		print(array);
-		alg(array);
-		System.out.println("After");
-		print(array);
+		printCol10(array);
+	}
+
+	public static void copy(int[][] original, int[][] copy) {
+		for (int row = 0; row < original.length; row++) {
+			for (int col = 0; col < original[row].length; col++) {
+				original[row][col] = copy[row][col];
+
+			}
+		}
+	}
+
+	public static void printCol10(int[][] array) {
+		int count = 0;
+		for (int i = 0; i < array[9].length; i++) {
+			if (array[9][i] == 1) {
+				count++;
+			}
+		}
+		System.out.println("SEQUENCE ROW 10 COUNT " + count);
+		count = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i][9] == 1) {
+				count++;
+			}
+		}
+		System.out.println("SEQUENCE COL 10 COUNT " + count);
+		count = 0;
+		totalCount(array, count);
+	}
+
+	private static void totalCount(int[][] array, int count) {
+		for (int row = 0; row < array.length; row++) {
+			for (int col = 0; col < array[row].length; col++) {
+				if (array[row][col] == 1) {
+					count++;
+				}
+			}
+		}
+		System.out.println("TOTAL " + count);
 	}
 
 	public static void print(int array[][]) {
+		for (int i = 0; i < array[0].length; i++) {
+			System.out.print("\t" + (i + 1));
+		}
+		System.out.println();
 		for (int row = 0; row < array.length; row++) {
+			System.out.print(row + 1 + "\t");
 			for (int col = 0; col < array[row].length; col++) {
 				System.out.print(array[row][col] + "\t");
 			}
@@ -27,7 +78,6 @@ public class circleOfLife {
 
 	public static void alg(int[][] array) {
 		for (int row = 0; row < array.length; row++) {
-
 			for (int col = 0; col < array[row].length; col++) {
 				int count = 0;
 
@@ -89,13 +139,29 @@ public class circleOfLife {
 
 				switch (count) {
 				case 0:
-					array[row][col] = 0;
+					// DEATH
+					originalArray[row][col] = 0;
+					continue;
+				case 1:
+					// DEATH
+					originalArray[row][col] = 0;
+					continue;
+
 				case 2:
-					array[row][col] = 1;
+					// originalArray[row][col] = 1;
 					// System.out.println("Breach");
+					continue;
+
 				case 3:
-					array[row][col] = 1;
+					// BIRTH
+					originalArray[row][col] = 1;
 					// System.out.println("Breach");
+					continue;
+				default:
+// DEATH OVERCROWDING
+					originalArray[row][col] = 0;
+					// System.out.println("Breach");
+					continue;
 
 				}
 //				System.out.println(
