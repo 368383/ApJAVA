@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class circleOfLife {
 	public static int[][] countArray = new int[22][22];
+
 	// 8 6, 110
 	public static void main(String args[]) {
 		int[][] changeArray = read();
@@ -21,7 +22,6 @@ public class circleOfLife {
 			alg(changeArray);
 			copy(changeArray, countArray);
 
-
 		}
 		System.out.println("AFTER 5 GENERATIONS");
 		print(changeArray);
@@ -29,30 +29,43 @@ public class circleOfLife {
 	}
 
 	public static void copyRowCol(int[][] array) {
+		// PROTECTED ARRAYS
+		array[0][0] = 100;
+		array[array.length - 1][0] = 100;
+		array[array.length - 1][array.length - 1] = 100;
+		array[0][array.length - 1] = 100;
 		for (int i = 1; i < array.length - 1; i++) {
-			//PROTECTED ARRAYS
-			array[0][0]=100;
-			array[array.length-1][0]=100;
-			array[array.length-1][array.length-1]=100;
-			array[0][array.length-1]=100;
-
-
-			//VERY LEFT
-			array[0][i] = array[20][i];
-			//VERY RIGHT
-			array[21][i] = array[1][i];
-			//VERY BOTTOM
+			// VERY LEFT
+			array[i][0] = array[i][20];
+			// VERY RIGHT
 			array[i][21] = array[i][1];
-			//VERY TOP
-			array[i][0] = array[i][21];
+		}
+		print(array);
 
+		System.out.println("End Change of Bounds Left and Right");
+		for (int i = 1; i < array.length - 1; i++) {
+
+			// VERY BOTTOM
+
+			array[21][i] = array[1][i];
+
+			// VERY TOP
 
 		}
+		print(array);
+
+		System.out.println("botom finished\t"+array[20][4]);
+		for (int i = 1; i < array.length - 1; i++) {
+
+			 array[0][i] = array[20][i];
+		}
+		print(array);
+
 	}
 
 	public static void copy(int[][] original, int[][] copy) {
-		for (int row = 1; row < original.length-1; row++) {
-			for (int col = 1; col < original[row].length-1; col++) {
+		for (int row = 1; row < original.length - 1; row++) {
+			for (int col = 1; col < original[row].length - 1; col++) {
 				original[row][col] = copy[row][col];
 
 			}
@@ -61,14 +74,14 @@ public class circleOfLife {
 
 	public static void printCol10(int[][] array) {
 		int count = 0;
-		for (int i = 0; i < array[9].length; i++) {
+		for (int i = 1; i < array[9].length-1; i++) {
 			if (array[10][i] == 1) {
 				count++;
 			}
 		}
 		System.out.println("SEQUENCE ROW 10 COUNT " + count);
 		count = 0;
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 1; i < array.length-1; i++) {
 			if (array[i][10] == 1) {
 				count++;
 			}
@@ -79,8 +92,8 @@ public class circleOfLife {
 	}
 
 	private static void totalCount(int[][] array, int count) {
-		for (int row = 1; row < array.length-1; row++) {
-			for (int col = 1; col < array[row].length-1; col++) {
+		for (int row = 1; row < array.length - 1; row++) {
+			for (int col = 1; col < array[row].length - 1; col++) {
 				if (array[row][col] == 1) {
 					count++;
 				}
@@ -90,8 +103,8 @@ public class circleOfLife {
 	}
 
 	public static void print(int array[][]) {
-		for (int i = 0; i < array[0].length-1; i++) {
-			System.out.print("\t" + (i ));
+		for (int i = 0; i < array[0].length - 1; i++) {
+			System.out.print("\t" + (i));
 		}
 		System.out.println();
 		for (int row = 0; row < array.length; row++) {
@@ -106,8 +119,8 @@ public class circleOfLife {
 	}
 
 	public static void alg(int[][] array) {
-		for (int row = 1; row < array.length-1; row++) {
-			for (int col = 1; col < array[row].length-1; col++) {
+		for (int row = 1; row < array.length - 1; row++) {
+			for (int col = 1; col < array[row].length - 1; col++) {
 				int count = 0;
 
 				try {
@@ -181,6 +194,7 @@ public class circleOfLife {
 					// BIRTH
 					countArray[row][col] = 1;
 					continue;
+
 				default:
 					countArray[row][col] = 0;
 					continue;
