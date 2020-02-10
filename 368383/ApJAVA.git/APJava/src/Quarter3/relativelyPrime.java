@@ -46,10 +46,10 @@ public class relativelyPrime {
 	public static boolean eval(int a, int b) {
 		for (int i = 2; i < 9; i++) {
 			if (!(a<2||b<2)&&a % i == b % i && a % i == 0) {
-				return true;
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 }
