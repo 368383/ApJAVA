@@ -3,7 +3,7 @@ package circleOfLife;
 import java.io.File;
 import java.util.Scanner;
 
-public class circleOfLifeWrap {
+public class circleOfLifeOG {
 	public static int[][] originalArray = new int[20][20];
 
 	public static void main(String args[]) {
