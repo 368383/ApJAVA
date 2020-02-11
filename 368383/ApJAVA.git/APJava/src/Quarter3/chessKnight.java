@@ -5,11 +5,13 @@ public class chessKnight {
 	public static int[][] trail = new int[8][8];
 	public static int knightX = 0;
 	public static int knightY = 0;
-	public static int trailCount = 1;
+	public static int trailCount = 2;
 	public static int cycleCount = 0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		int knight =0;
+		int knighty =0;
 		initialize();
 		while (true) {
 			if (move(knightX, knightY)) {
@@ -18,7 +20,7 @@ public class chessKnight {
 			} else {
 			}
 			cycleCount++;
-			if (cycleCount == 64) {
+			if (cycleCount == 100) {
 				break;
 			}
 		}
@@ -28,8 +30,8 @@ public class chessKnight {
 
 		for (int row = 0; row < trail.length; row++) {
 			for (int col = 0; col < trail[row].length; col++) {
-				trail[row][col] = 100;
-				trail[0][0] = 0;
+				trail[row][col] = 0;
+				trail[0][0] = 1;
 
 			}
 			System.out.println();
@@ -163,7 +165,7 @@ public class chessKnight {
 	}
 
 	public static boolean isOccupied(int[][] array, int row, int col) {
-		if (array[row][col] == 100) {
+		if (array[row][col] == 0) {
 			return false;
 		}
 		return true;
