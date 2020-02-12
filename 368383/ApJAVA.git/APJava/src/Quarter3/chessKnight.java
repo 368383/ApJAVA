@@ -10,8 +10,8 @@ public class chessKnight {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int knight =0;
-		int knighty =0;
+		int knight = 0;
+		int knighty = 0;
 		initialize();
 		while (true) {
 			if (move(knightX, knightY)) {
@@ -20,10 +20,86 @@ public class chessKnight {
 			} else {
 			}
 			cycleCount++;
-			if (cycleCount == 100) {
+			if (!allOccupied(knightX, knightY)) {
 				break;
 			}
 		}
+		System.out.println("Program Completion" + "\t Maximum value " + (trailCount-1));
+	}
+
+	public static boolean allOccupied(int row, int col) {
+		int rowOp = 0;
+		int colOp = 0;
+		// left bottom
+		rowOp = row - 1;
+		colOp = col - 2;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// left top
+		rowOp = row - 2;
+		colOp = col - 1;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// right bottom
+		rowOp = row - 1;
+		colOp = col + 2;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// right top
+		rowOp = row - 2;
+		colOp = col + 1;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// right bottom bottom
+		rowOp = row + 1;
+		colOp = col + 2;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// right bottom top
+		rowOp = row + 2;
+		colOp = col + 1;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// right bottom bottom
+		rowOp = row + 1;
+		colOp = col - 2;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+
+			return true;
+
+		}
+
+		// right bottom top
+		rowOp = row + 2;
+		colOp = col - 1;
+		if (rowOp < 8 && colOp < 8 && rowOp >= 0 && colOp >= 0 && !isOccupied(trail, rowOp, colOp)) {
+			return true;
+		}
+		return false;
 	}
 
 	public static void initialize() {
@@ -49,7 +125,7 @@ public class chessKnight {
 
 	public static boolean move(int row, int col) {
 		int random = (int) (Math.random() * 8);
-		//System.out.println(random);
+		// System.out.println(random);
 		int rowOp = 0;
 		int colOp = 0;
 		switch (random) {
@@ -156,7 +232,7 @@ public class chessKnight {
 				return true;
 			}
 		default:
-			//System.out.println("Not possible");
+			// System.out.println("Not possible");
 
 			return false;
 
