@@ -124,7 +124,7 @@ public class chessKnight {
 	}
 
 	public static boolean move(int row, int col) {
-		int random = (int) (Math.random() * 8);
+		int random = (int) (Math.random() * 8)+1;
 		// System.out.println(random);
 		int rowOp = 0;
 		int colOp = 0;
