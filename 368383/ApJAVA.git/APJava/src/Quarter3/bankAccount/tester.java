@@ -14,15 +14,22 @@ public class tester {
 		int index =search("Addison", c);
 		c[index].withdraw(100);
 		c[index].deposit(50);
-		System.out.println(c[index].toString());
+		System.out.println("PRINT OUT Addison: " +c[index].toString());
+		
+		int index1 = search("Albert",b);
+		//	System.out.println("Debug "+index1);
+
 		for(int i =0;i<3;i++) {
-			b[index].withdraw(200);
+			b[index1].withdraw(200);
 		}
-		b[index].deposit(1000);
-		b[index].addInterest();
-		b[index].toString();
-		int index1 =search("Adonis", c);
-		a[index].deposit(5);
+		b[index1].deposit(1000);
+		b[index1].addInterest();
+		System.out.println("PRINT OUT Albert: " +b[index1].toString());
+
+		int index2 =search("Adonis", a);
+		a[index2].deposit(5);
+		System.out.println("PRINT OUT ADONIS: " +a[index2].toString());
+
 		displayAccounts(a, b, c);
 
 	}

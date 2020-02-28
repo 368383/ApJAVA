@@ -1,8 +1,8 @@
 package Quarter3.bankAccount;
 
 public class SavingsAccount extends BankAccount {
-	private  int transactionNumber;
-	private  double interestRate;
+	private int transactionNumber;
+	private double interestRate;
 
 	public SavingsAccount(String name, double balance, int transactionNumber, double interestRate) {
 		super(balance, name);
@@ -45,11 +45,13 @@ public class SavingsAccount extends BankAccount {
 	}
 
 	public void withdraw(double value) {
+	//	System.out.println("Transaction Number " + transactionNumber + "\t" + (!checkTransActionNumber()));
 		if (!checkTransActionNumber()) {
 			super.withdraw(value);
 			transactionNumber++;
+		} else {
+			transActionExceedMessage();
 		}
-		transActionExceedMessage();
 	}
 
 }
