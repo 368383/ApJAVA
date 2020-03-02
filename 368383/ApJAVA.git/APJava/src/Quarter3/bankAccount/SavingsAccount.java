@@ -19,11 +19,14 @@ public class SavingsAccount extends BankAccount {
 	}
 
 	public void deposit(double value) {
+		super.deposit(value);
+		transactionNumber++;
 		if (!checkTransActionNumber()) {
-			super.deposit(value);
-			transactionNumber++;
+
+		} else {
+			transActionExceedMessage();
 		}
-		transActionExceedMessage();
+
 	}
 
 	private void transActionExceedMessage() {
@@ -45,10 +48,11 @@ public class SavingsAccount extends BankAccount {
 	}
 
 	public void withdraw(double value) {
-	//	System.out.println("Transaction Number " + transactionNumber + "\t" + (!checkTransActionNumber()));
+		// System.out.println("Transaction Number " + transactionNumber + "\t" +
+		// (!checkTransActionNumber()));
+		super.withdraw(value);
+		transactionNumber++;
 		if (!checkTransActionNumber()) {
-			super.withdraw(value);
-			transactionNumber++;
 		} else {
 			transActionExceedMessage();
 		}

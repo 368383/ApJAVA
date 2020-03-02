@@ -12,8 +12,9 @@ public class CheckingAccount extends BankAccount {
 		this.transActionFee = transactionFee;
 	}
 
-	public CheckingAccount(String name, double balance) {
+	public CheckingAccount(String name, double balance, double trans) {
 		super(balance, name);
+		transActionFee=trans;
 	}
 
 	public void deposit(double value) {

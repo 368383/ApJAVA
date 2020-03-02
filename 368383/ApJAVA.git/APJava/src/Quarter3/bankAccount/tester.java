@@ -11,24 +11,24 @@ public class tester {
 		SavingsAccount[] b = new SavingsAccount[10];
 		CheckingAccount[] c = new CheckingAccount[10];
 		read(a, b, c);
-		int index =search("Addison", c);
+		int index = search("Addison", c);
 		c[index].withdraw(100);
 		c[index].deposit(50);
-		System.out.println("PRINT OUT Addison: " +c[index].toString());
-		
-		int index1 = search("Albert",b);
-		//	System.out.println("Debug "+index1);
+		System.out.println("PRINT OUT Addison: " + c[index].toString());
 
-		for(int i =0;i<3;i++) {
+		int index1 = search("Albert", b);
+		// System.out.println("Debug "+index1);
+
+		for (int i = 0; i < 3; i++) {
 			b[index1].withdraw(200);
 		}
 		b[index1].deposit(1000);
 		b[index1].addInterest();
-		System.out.println("PRINT OUT Albert: " +b[index1].toString());
+		System.out.println("PRINT OUT Albert: " + b[index1].toString());
 
-		int index2 =search("Adonis", a);
+		int index2 = search("Adonis", a);
 		a[index2].deposit(5);
-		System.out.println("PRINT OUT ADONIS: " +a[index2].toString());
+		System.out.println("PRINT OUT ADONIS: " + a[index2].toString());
 
 		displayAccounts(a, b, c);
 
@@ -43,6 +43,7 @@ public class tester {
 		System.out.println("UNABLE TO BE FOUND");
 		return 1000;
 	}
+
 	public static int search(String name, BankAccount[] a) {
 		for (int i = 0; i < a.length; i++) {
 			if (a[i].getName().equals(name)) {
@@ -96,7 +97,7 @@ public class tester {
 				System.out.println(name);
 				int id = input2.nextInt();
 				double ir = input2.nextDouble();
-				c[i] = new CheckingAccount(name, ir);
+				c[i] = new CheckingAccount(name, id, ir);
 				input2.nextLine();
 
 			}
