@@ -13,6 +13,7 @@ public class Chick extends Animal {
 
 	Chick(String type, String sound1, String sound2) {
 		mySound = random(sound1, sound2);
+		this.myType = type;
 	}
 
 	public String getSound() {
@@ -24,7 +25,7 @@ public class Chick extends Animal {
 	}
 
 	public String random(String option1, String option2) {
-		int random = (int) Math.random() * 2;
+		int random = (int) (Math.random() * 2);
 		System.out.println(random);
 
 		if (random == 0) {
